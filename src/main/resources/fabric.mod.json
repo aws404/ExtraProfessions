@@ -4,12 +4,12 @@
   "version": "${version}",
 
   "name": "Extra Professions",
-  "description": "Adds extra Villager professions!.",
+  "description": "Adds extra Villager professions!",
   "authors": [
     "aws404"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
+    "homepage": "https://modrinth.com/mod/extra_professions",
     "sources": "https://github.com/aws404/ExtraProfessions"
   },
 
@@ -32,8 +32,9 @@
 
   "depends": {
     "fabricloader": ">=0.12.12",
-    "fabric": "*",
+    "fabric": ">=0.46",
     "minecraft": "1.18.x",
-    "java": ">=17"
+    "java": ">=17",
+    "sjvt": "*"
   }
 }
