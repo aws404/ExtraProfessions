@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extra_professions:sawing/spruce/buttons_from_log",
+      "extra_professions:sawing/spruce/buttons_from_planks",
+      "extra_professions:sawing/spruce/doors_from_log",
+      "extra_professions:sawing/spruce/doors_from_planks",
+      "extra_professions:sawing/spruce/fence_from_log",
+      "extra_professions:sawing/spruce/fence_from_planks",
+      "extra_professions:sawing/spruce/fence_gate_from_log",
+      "extra_professions:sawing/spruce/planks_from_log",
+      "extra_professions:sawing/spruce/pressure_plates_from_log",
+      "extra_professions:sawing/spruce/pressure_plates_from_planks",
+      "extra_professions:sawing/spruce/signs_from_log",
+      "extra_professions:sawing/spruce/sings_from_planks",
+      "extra_professions:sawing/spruce/slabs_from_log",
+      "extra_professions:sawing/spruce/slabs_from_planks",
+      "extra_professions:sawing/spruce/stairs_from_log",
+      "extra_professions:sawing/spruce/stairs_from_planks",
+      "extra_professions:sawing/spruce/trapdoors_from_planks"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:spruce_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extra_professions:sawing/spruce/planks_from_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -15,7 +15,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -30,8 +29,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -40,19 +37,14 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.structure.Structure;
-import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.tag.Tag;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.gen.feature.VillagePlacedFeatures;
@@ -106,6 +98,12 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 	}
 
 	@Override
+	public void onInitializeClient() {
+		BlockRenderLayerMap.INSTANCE.putBlock(SAWMILL_BLOCK, RenderLayer.getCutout());
+		ScreenRegistry.register(SAWMILL_SCREEN_HANDLER, SawmillScreen::new);
+	}
+
+	@Override
 	public void onInitialize() {
 		LOGGER.info("Starting Extra Professions");
 
@@ -153,20 +151,6 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 		});
 
 		if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-			CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-				dispatcher.register(CommandManager.literal("structure")
-						.then(CommandManager.argument("structure", IdentifierArgumentType.identifier())
-								.executes(context -> {
-									Identifier id = IdentifierArgumentType.getIdentifier(context, "structure");
-									Structure structure = context.getSource().getServer().getStructureManager().getStructure(id).orElseThrow(() -> new CommandException(new LiteralText("Could not find structure")));
-									BlockPos pos = new BlockPos(context.getSource().getPosition());
-									structure.place(context.getSource().getWorld(), pos, pos, new StructurePlacementData(), context.getSource().getWorld().random, 2);
-									return 1;
-								})
-						)
-				);
-			});
-
 			StructurePools.register(new StructurePool(
 					id("test_lumber_farm"),
 					new Identifier("empty"),
@@ -180,11 +164,5 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 					StructurePool.Projection.RIGID)
 			);
 		}
-	}
-
-	@Override
-	public void onInitializeClient() {
-		BlockRenderLayerMap.INSTANCE.putBlock(SAWMILL_BLOCK, RenderLayer.getCutout());
-		ScreenRegistry.register(SAWMILL_SCREEN_HANDLER, SawmillScreen::new);
 	}
 }

@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extra_professions:sawing/oak/buttons_from_log",
+      "extra_professions:sawing/oak/buttons_from_planks",
+      "extra_professions:sawing/oak/doors_from_log",
+      "extra_professions:sawing/oak/doors_from_planks",
+      "extra_professions:sawing/oak/fence_from_log",
+      "extra_professions:sawing/oak/fence_from_planks",
+      "extra_professions:sawing/oak/fence_gate_from_log",
+      "extra_professions:sawing/oak/planks_from_log",
+      "extra_professions:sawing/oak/pressure_plates_from_log",
+      "extra_professions:sawing/oak/pressure_plates_from_planks",
+      "extra_professions:sawing/oak/signs_from_log",
+      "extra_professions:sawing/oak/sings_from_planks",
+      "extra_professions:sawing/oak/slabs_from_log",
+      "extra_professions:sawing/oak/slabs_from_planks",
+      "extra_professions:sawing/oak/stairs_from_log",
+      "extra_professions:sawing/oak/stairs_from_planks",
+      "extra_professions:sawing/oak/trapdoors_from_planks"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:oak_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extra_professions:sawing/oak/planks_from_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

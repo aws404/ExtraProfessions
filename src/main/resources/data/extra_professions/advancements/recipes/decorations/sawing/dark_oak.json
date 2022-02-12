@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extra_professions:sawing/dark_oak/buttons_from_log",
+      "extra_professions:sawing/dark_oak/buttons_from_planks",
+      "extra_professions:sawing/dark_oak/doors_from_log",
+      "extra_professions:sawing/dark_oak/doors_from_planks",
+      "extra_professions:sawing/dark_oak/fence_from_log",
+      "extra_professions:sawing/dark_oak/fence_from_planks",
+      "extra_professions:sawing/dark_oak/fence_gate_from_log",
+      "extra_professions:sawing/dark_oak/planks_from_log",
+      "extra_professions:sawing/dark_oak/pressure_plates_from_log",
+      "extra_professions:sawing/dark_oak/pressure_plates_from_planks",
+      "extra_professions:sawing/dark_oak/signs_from_log",
+      "extra_professions:sawing/dark_oak/sings_from_planks",
+      "extra_professions:sawing/dark_oak/slabs_from_log",
+      "extra_professions:sawing/dark_oak/slabs_from_planks",
+      "extra_professions:sawing/dark_oak/stairs_from_log",
+      "extra_professions:sawing/dark_oak/stairs_from_planks",
+      "extra_professions:sawing/dark_oak/trapdoors_from_planks"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:dark_oak_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extra_professions:sawing/dark_oak/planks_from_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}
