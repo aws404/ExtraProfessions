@@ -6,6 +6,7 @@ Add extra professions to villages, including workstations and village buildings.
 The lumberjack manages the new lumber farm buildings, **chopping down trees** and **planting new ones** in their place or on spare **podzol** blocks.  
 Its workstation is the **sawmill** block, which also adds a new way of **crafting wood products**, sometimes at a reduced material cost.
 They will also trade a variety ofs wooden products with you, depending on their surroundings.
+![Image of the Lumberjack](https://imgur.com/YMeJAVS.png)
 
 # Downloads
 * [Modrinth](https://modrinth.com/mod/extra_professions)
