@@ -1,5 +1,5 @@
 # Extra Professions Mod
-Add extra professions to villages, including workstations and village buildings. 
+Add extra villager professions, including workstations and village buildings. 
 
 ## Added Professions
 ### Lumberjack
