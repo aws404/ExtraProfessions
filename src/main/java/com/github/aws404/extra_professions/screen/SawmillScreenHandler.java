@@ -1,7 +1,6 @@
 package com.github.aws404.extra_professions.screen;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
-import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +10,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.FurnaceScreenHandler;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
