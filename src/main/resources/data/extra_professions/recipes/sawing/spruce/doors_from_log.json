@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "tag": "minecraft:spruce_logs"
+  },
+  "result": "minecraft:spruce_door",
+  "count": 4
+}

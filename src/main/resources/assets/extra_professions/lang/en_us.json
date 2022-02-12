@@ -1,0 +1,10 @@
+{
+  "block.extra_professions.sawmill": "Sawmill",
+  "block.extra_professions.dye_station": "Dye Station",
+
+  "container.sawmill": "Sawmill",
+
+  "entity.minecraft.villager.lumberjack": "Lumberjack",
+
+  "stat.extra_profession.open_sawmill": "Sawmills Opened"
+}

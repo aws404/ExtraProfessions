@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "item": "minecraft:jungle_planks"
+  },
+  "result": "minecraft:jungle_trapdoor",
+  "count": 2
+}

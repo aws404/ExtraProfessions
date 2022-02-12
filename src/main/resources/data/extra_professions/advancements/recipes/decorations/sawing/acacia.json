@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extra_professions:sawing/acacia/buttons_from_log",
+      "extra_professions:sawing/acacia/buttons_from_planks",
+      "extra_professions:sawing/acacia/doors_from_log",
+      "extra_professions:sawing/acacia/doors_from_planks",
+      "extra_professions:sawing/acacia/fence_from_log",
+      "extra_professions:sawing/acacia/fence_from_planks",
+      "extra_professions:sawing/acacia/fence_gate_from_log",
+      "extra_professions:sawing/acacia/planks_from_log",
+      "extra_professions:sawing/acacia/pressure_plates_from_log",
+      "extra_professions:sawing/acacia/pressure_plates_from_planks",
+      "extra_professions:sawing/acacia/signs_from_log",
+      "extra_professions:sawing/acacia/sings_from_planks",
+      "extra_professions:sawing/acacia/slabs_from_log",
+      "extra_professions:sawing/acacia/slabs_from_planks",
+      "extra_professions:sawing/acacia/stairs_from_log",
+      "extra_professions:sawing/acacia/stairs_from_planks",
+      "extra_professions:sawing/acacia/trapdoors_from_planks"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:acacia_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extra_professions:sawing/acacia/planks_from_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_the_recipe"
+    ]
+  ]
+}

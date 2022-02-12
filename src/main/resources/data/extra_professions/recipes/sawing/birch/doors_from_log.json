@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "tag": "minecraft:birch_logs"
+  },
+  "result": "minecraft:birch_door",
+  "count": 4
+}

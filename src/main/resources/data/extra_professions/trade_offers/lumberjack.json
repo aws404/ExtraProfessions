@@ -1,0 +1,352 @@
+{
+  "profession": "extra_professions:lumberjack",
+  "replace": false,
+  "offers": {
+    "novice": [
+      {
+        "type": "minecraft:type_aware_buy_for_one_emerald",
+        "items": {
+          "default": "minecraft:oak_log",
+          "minecraft:jungle": "minecraft:jungle_log",
+          "minecraft:savanna": "minecraft:acacia_log",
+          "minecraft:snow": "minecraft:spruce_log",
+          "minecraft:taiga": "minecraft:spruce_log"
+        },
+        "count": 8,
+        "max_uses": 12,
+        "experience": 2
+      },
+      {
+        "type": "minecraft:type_aware_buy_for_one_emerald",
+        "items": {
+          "default": "minecraft:stripped_oak_log",
+          "minecraft:jungle": "minecraft:stripped_jungle_log",
+          "minecraft:savanna": "minecraft:stripped_acacia_log",
+          "minecraft:snow": "minecraft:stripped_spruce_log",
+          "minecraft:taiga": "minecraft:stripped_spruce_log"
+        },
+        "count": 6,
+        "max_uses": 12,
+        "experience": 2
+      },
+      {
+        "type": "minecraft:type_aware_buy_for_one_emerald",
+        "items": {
+          "default": "minecraft:oak_sapling",
+          "minecraft:jungle": "minecraft:jungle_sapling",
+          "minecraft:savanna": "minecraft:acacia_sapling",
+          "minecraft:snow": "minecraft:spruce_sapling",
+          "minecraft:taiga": "minecraft:spruce_sapling"
+        },
+        "count": 8,
+        "max_uses": 16,
+        "experience": 2
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:stick",
+        "price": 16,
+        "count": 1,
+        "max_uses": 12,
+        "experience": 1
+      }
+    ],
+    "apprentice": [
+      {
+        "type": "minecraft:type_aware_buy_for_one_emerald",
+        "items": {
+          "default": "minecraft:oak_planks",
+          "minecraft:jungle": "minecraft:jungle_planks",
+          "minecraft:savanna": "minecraft:acacia_planks",
+          "minecraft:snow": "minecraft:spruce_planks",
+          "minecraft:taiga": "minecraft:spruce_planks"
+        },
+        "count": 28,
+        "max_uses": 10,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:apple",
+        "price": 1,
+        "count": 3,
+        "max_uses": 16,
+        "experience": 5
+      },
+      {
+        "type": "sjvt:type_aware_sell_item_for_items",
+        "buy_1": {
+          "default": "minecraft:emerald"
+        },
+        "sell": {
+          "default": {
+            "id": "minecraft:oak_fence",
+            "Count": 16
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:jungle_fence",
+            "Count": 16
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:acacia_fence",
+            "Count": 16
+          },
+          "minecraft:snow": {
+            "id": "minecraft:spruce_fence",
+            "Count": 16
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:spruce_fence",
+            "Count": 16
+          }
+        },
+        "max_uses": 12,
+        "experience": 5
+      }
+    ],
+    "journeyman": [
+      {
+        "type": "sjvt:type_aware_sell_item_for_items",
+        "buy_1": {
+          "default": "minecraft:emerald"
+        },
+        "sell": {
+          "default": {
+            "id": "minecraft:oak_stairs",
+            "Count": 16
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:jungle_stairs",
+            "Count": 16
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:acacia_stairs",
+            "Count": 16
+          },
+          "minecraft:snow": {
+            "id": "minecraft:spruce_stairs",
+            "Count": 16
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:spruce_stairs",
+            "Count": 16
+          }
+        },
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "sjvt:type_aware_sell_item_for_items",
+        "buy_1": {
+          "default": "minecraft:emerald"
+        },
+        "sell": {
+          "default": {
+            "id": "minecraft:oak_slab",
+            "Count": 28
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:jungle_slab",
+            "Count": 28
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:acacia_slab",
+            "Count": 28
+          },
+          "minecraft:snow": {
+            "id": "minecraft:spruce_slab",
+            "Count": 28
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:spruce_slab",
+            "Count": 28
+          }
+        },
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:stick",
+        "price": 28,
+        "max_uses": 16,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:stone_axe",
+        "count": 2,
+        "price": 1,
+        "max_uses": 3,
+        "experience": 10
+      }
+    ],
+    "expert": [
+      {
+        "type": "minecraft:sell_enchanted_tool",
+        "item": "minecraft:iron_axe",
+        "base_price": 4,
+        "max_uses": 3,
+        "experience": 15,
+        "price_multiplier": 0.2
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:campfire",
+        "price": 2,
+        "max_uses": 12,
+        "experience": 15
+      },
+      {
+        "type": "sjvt:type_aware_sell_item_for_items",
+        "buy_1": {
+          "default": "minecraft:emerald"
+        },
+        "sell": {
+          "default": {
+            "id": "minecraft:grass",
+            "Count": 4
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:fern",
+            "Count": 4
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:dead_bush",
+            "Count": 4
+          },
+          "minecraft:desert": {
+            "id": "minecraft:dead_bush",
+            "Count": 4
+          },
+          "minecraft:snow": {
+            "id": "minecraft:fern",
+            "Count": 4
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:fern",
+            "Count": 4
+          }
+        },
+        "max_uses": 16,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:bamboo",
+        "price": 32,
+        "max_uses": 16,
+        "experience": 30
+      },
+      {
+        "type": "sjvt:type_aware_sell_item_for_items",
+        "buy_1": {
+          "default": {
+            "id": "minecraft:oak_log",
+            "Count": 8
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:jungle_log",
+            "Count": 8
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:acacia_log",
+            "Count": 8
+          },
+          "minecraft:snow": {
+            "id": "minecraft:spruce_log",
+            "Count": 8
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:spruce_log",
+            "Count": 8
+          }
+        },
+        "buy_2": {
+          "default": "minecraft:emerald"
+        },
+        "sell": {
+          "default": {
+            "id": "minecraft:oak_wood",
+            "Count": 4
+          },
+          "minecraft:jungle": {
+            "id": "minecraft:jungle_wood",
+            "Count": 8
+          },
+          "minecraft:savanna": {
+            "id": "minecraft:acacia_wood",
+            "Count": 8
+          },
+          "minecraft:snow": {
+            "id": "minecraft:spruce_wood",
+            "Count": 8
+          },
+          "minecraft:taiga": {
+            "id": "minecraft:spruce_wood",
+            "Count": 8
+          }
+        },
+        "max_uses": 16,
+        "experience": 15
+      }
+    ],
+    "master": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:azalea",
+        "price": 6,
+        "max_uses": 3,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:oak_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:birch_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:spruce_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:jungle_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:acacia_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:dark_oak_sapling",
+        "count": 4,
+        "price": 1,
+        "max_uses": 12,
+        "experience": 30
+      }
+    ]
+  }
+}

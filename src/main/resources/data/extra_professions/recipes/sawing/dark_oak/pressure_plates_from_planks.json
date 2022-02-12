@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "item": "minecraft:dark_oak_planks"
+  },
+  "result": "minecraft:dark_oak_pressure_plate",
+  "count": 1
+}

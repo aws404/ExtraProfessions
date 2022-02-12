@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "extra_professions:block/sawmill",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "extra_professions:block/sawmill"
+    },
+    "facing=south": {
+      "model": "extra_professions:block/sawmill",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "extra_professions:block/sawmill",
+      "y": 270
+    }
+  }
+}

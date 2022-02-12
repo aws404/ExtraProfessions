@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "tag": "minecraft:jungle_logs"
+  },
+  "result": "minecraft:jungle_fence",
+  "count": 4
+}

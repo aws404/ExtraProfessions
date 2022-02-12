@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "tag": "minecraft:acacia_logs"
+  },
+  "result": "minecraft:acacia_fence_gate",
+  "count": 1
+}

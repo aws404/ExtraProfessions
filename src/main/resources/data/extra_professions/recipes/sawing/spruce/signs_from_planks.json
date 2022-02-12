@@ -1,0 +1,8 @@
+{
+  "type": "extra_professions:sawmill",
+  "ingredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "result": "minecraft:spruce_sign",
+  "count": 1
+}
