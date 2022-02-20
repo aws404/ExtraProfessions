@@ -7,6 +7,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ExtraStats {
     public static final Identifier OPEN_SAWMILL = register("open_sawmill", StatFormatter.DEFAULT);
+    public static final Identifier INTERACT_WITH_ANNEALER = register("interact_with_annealer", StatFormatter.DEFAULT);
 
     private static Identifier register(String id, StatFormatter formatter) {
         Identifier identifier = ExtraProfessionsMod.id(id);

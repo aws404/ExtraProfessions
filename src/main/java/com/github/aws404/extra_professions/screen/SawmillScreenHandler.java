@@ -1,6 +1,8 @@
 package com.github.aws404.extra_professions.screen;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
+import com.github.aws404.extra_professions.ExtraTags;
+import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,7 +41,7 @@ public class SawmillScreenHandler extends ScreenHandler {
     }
 
     public SawmillScreenHandler(int syncId, PlayerInventory playerInventory, Inventory entity, ScreenHandlerContext context) {
-        super(ExtraProfessionsMod.SAWMILL_SCREEN_HANDLER, syncId);
+        super(ExtraScreenHandlers.SAWMILL_SCREEN_HANDLER, syncId);
         this.context = context;
         this.selectedRecipe = Property.create();
         this.inputStack = ItemStack.EMPTY;
@@ -85,7 +87,7 @@ public class SawmillScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(entity, i, 116 + i * 18, 75) {
                 @Override
                 public boolean canInsert(ItemStack stack) {
-                    return stack.isIn(ExtraProfessionsMod.WOODEN_ITEMS_TAG);
+                    return stack.isIn(ExtraTags.WOODEN_ITEMS_TAG);
                 }
             });
         }
@@ -107,7 +109,7 @@ public class SawmillScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(this.context, player, ExtraProfessionsMod.SAWMILL_BLOCK);
+        return canUse(this.context, player, ExtraBlocks.SAWMILL_BLOCK);
     }
 
     void populateResult() {

@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.recipe;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
+import com.github.aws404.extra_professions.block.ExtraBlocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CuttingRecipe;
@@ -19,6 +20,6 @@ public class SawmillRecipe extends CuttingRecipe {
     }
 
     public ItemStack createIcon() {
-        return new ItemStack(ExtraProfessionsMod.SAWMILL_ITEM);
+        return new ItemStack(ExtraBlocks.SAWMILL_ITEM);
     }
 }

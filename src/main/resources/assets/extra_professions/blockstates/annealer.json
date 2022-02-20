@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "extra_professions:block/annealer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "extra_professions:block/annealer"
+    },
+    "facing=south": {
+      "model": "extra_professions:block/annealer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "extra_professions:block/annealer",
+      "y": 270
+    }
+  }
+}

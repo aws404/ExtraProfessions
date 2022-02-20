@@ -1,6 +1,5 @@
 package com.github.aws404.extra_professions.block;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.ExtraStats;
 import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
 import net.minecraft.block.*;
@@ -24,12 +23,12 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class SawmillBlock extends BlockWithEntity {
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     protected static final VoxelShape BASE_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
     protected static final VoxelShape NORTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 12.0D, 16.0D, 16.0D, 16.0D));
     protected static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 4.0D));
     protected static final VoxelShape EAST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 4.0D, 16.0D, 16.0D));
     protected static final VoxelShape WEST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(12.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D));
-    protected static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public SawmillBlock(Settings settings) {
         super(settings);
@@ -64,7 +63,7 @@ public class SawmillBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return ExtraProfessionsMod.SAWMILL_BLOCK_ENTITY.instantiate(pos, state);
+        return ExtraBlocks.SAWMILL_BLOCK_ENTITY.instantiate(pos, state);
     }
 
     public boolean hasComparatorOutput(BlockState state) {

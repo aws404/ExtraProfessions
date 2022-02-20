@@ -1,0 +1,318 @@
+{
+  "profession": "extra_professions:chandler",
+  "replace": false,
+  "offers": {
+    "novice": [
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:string",
+        "price": 18,
+        "max_uses": 12,
+        "experience": 2
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:white_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:orange_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:magenta_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:light_blue_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:yellow_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:lime_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:pink_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:gray_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:light_gray_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:cyan_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:purple_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:blue_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:brown_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:green_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:red_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:black_candle",
+        "count": 2,
+        "max_uses": 12,
+        "experience": 1
+      }
+    ],
+    "apprentice": [
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "price": 3,
+        "item": "minecraft:honeycomb",
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "price": 2,
+        "item": "minecraft:honey_bottle",
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "price": 5,
+        "item": "minecraft:beehive",
+        "max_uses": 3,
+        "experience": 5
+      },
+      {
+        "type": "minecraft:sell_item",
+        "price": 2,
+        "item": "minecraft:honey_bottle",
+        "max_uses": 12,
+        "experience": 5
+      },
+      {
+        "type": "minecraft:sell_item",
+        "price": 2,
+        "item": "minecraft:honeycomb",
+        "max_uses": 12,
+        "experience": 5
+      }
+    ],
+    "journeyman": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:lantern",
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:bowl",
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:torch",
+        "count": 8,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:black_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:gray_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:white_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:red_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:yellow_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:green_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:brown_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 20
+      }
+    ],
+    "expert": [
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:quartz",
+        "price": 12,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:slime_ball",
+        "price": 8,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:orange_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:magenta_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:light_blue_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:lime_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      }
+    ,
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:pink_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:cyan_dye",
+        "price": 12,
+        "max_uses": 10,
+        "experience": 30
+      }
+    ],
+    "master": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:sea_lantern",
+        "count": 2,
+        "max_uses": 3,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:shroomlight",
+        "count": 2,
+        "max_uses": 3,
+        "experience": 30
+      }
+    ]
+  }
+}

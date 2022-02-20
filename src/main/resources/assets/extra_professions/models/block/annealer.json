@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "extra_professions:block/annealer_top",
+    "front": "extra_professions:block/annealer_front",
+    "side": "extra_professions:block/annealer_side"
+  }
+}

@@ -1,10 +1,17 @@
 {
   "block.extra_professions.sawmill": "Sawmill",
-  "block.extra_professions.dye_station": "Dye Station",
+  "block.extra_professions.dipping_station": "Dipping Station",
+  "block.extra_professions.annealer": "Annealer",
 
   "container.sawmill": "Sawmill",
+  "container.annealer": "Annealer",
 
   "entity.minecraft.villager.lumberjack": "Lumberjack",
+  "entity.minecraft.villager.chandler": "Chandler",
+  "entity.minecraft.villager.glazier": "Glazier",
 
-  "stat.extra_profession.open_sawmill": "Sawmills Opened"
+  "gui.recipebook.toggleRecipes.anneal": "Showing Annealable",
+
+  "stat.extra_profession.open_sawmill": "Sawmills Opened",
+  "stat.extra_profession.interact_with_annealer": "Interacted with Annealer"
 }

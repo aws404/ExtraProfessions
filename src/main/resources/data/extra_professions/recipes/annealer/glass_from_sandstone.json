@@ -1,0 +1,10 @@
+{
+  "type": "extra_professions:annealing",
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "result": "minecraft:glass",
+  "count": 4,
+  "experience": 0,
+  "cookingtime": 400
+}

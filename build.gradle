@@ -18,6 +18,7 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+	maven { url = "https://jitpack.io" }
 }
 
 dependencies {
@@ -28,8 +29,13 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
 	modImplementation include("maven.modrinth:sjvt:${project.sjvt_version}")
+	modImplementation include("maven.modrinth:booking_it:${project.bi_version}")
+
+	modImplementation("com.github.Chocohead:Fabric-ASM:v2.3") {
+		exclude (group: "net.fabricmc.fabric-api")
+	}
+	include "com.github.Chocohead:Fabric-ASM:v2.3"
 }
 
 processResources {

@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.block_entity;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
+import com.github.aws404.extra_professions.ExtraTags;
+import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.screen.SawmillScreenHandler;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -23,7 +24,7 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
 
     public SawmillBlockEntity(BlockPos pos, BlockState state) {
-        super(ExtraProfessionsMod.SAWMILL_BLOCK_ENTITY, pos, state);
+        super(ExtraBlocks.SAWMILL_BLOCK_ENTITY, pos, state);
     }
 
     protected void writeNbt(NbtCompound nbt) {
@@ -67,7 +68,7 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     public boolean isValid(int slot, ItemStack stack) {
-        return stack.isIn(ExtraProfessionsMod.WOODEN_ITEMS_TAG);
+        return stack.isIn(ExtraTags.WOODEN_ITEMS_TAG);
     }
 
     public void addStack(ItemStack stack) {

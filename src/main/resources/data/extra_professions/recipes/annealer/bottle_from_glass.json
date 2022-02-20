@@ -1,0 +1,9 @@
+{
+  "type": "extra_professions:annealing",
+  "ingredient": {
+    "item": "minecraft:glass"
+  },
+  "result": "minecraft:glass_bottle",
+  "experience": 0,
+  "cookingtime": 20
+}

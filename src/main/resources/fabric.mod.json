@@ -23,6 +23,9 @@
     ],
     "client": [
       "com.github.aws404.extra_professions.ExtraProfessionsMod"
+    ],
+    "booking_it:recipe_book": [
+      "com.github.aws404.extra_professions.ExtraRecipeBookAdder"
     ]
   },
   "mixins": [
@@ -35,6 +38,6 @@
     "fabric": ">=0.46",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "sjvt": "*"
+    "sjvt": ">=1.0.1"
   }
 }
