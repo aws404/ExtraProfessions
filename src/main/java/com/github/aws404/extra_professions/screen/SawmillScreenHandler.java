@@ -41,7 +41,7 @@ public class SawmillScreenHandler extends ScreenHandler {
     }
 
     public SawmillScreenHandler(int syncId, PlayerInventory playerInventory, Inventory entity, ScreenHandlerContext context) {
-        super(ExtraScreenHandlers.SAWMILL_SCREEN_HANDLER, syncId);
+        super(ExtraScreenHandlers.SAWMILL, syncId);
         this.context = context;
         this.selectedRecipe = Property.create();
         this.inputStack = ItemStack.EMPTY;
@@ -87,7 +87,7 @@ public class SawmillScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(entity, i, 116 + i * 18, 75) {
                 @Override
                 public boolean canInsert(ItemStack stack) {
-                    return stack.isIn(ExtraTags.WOODEN_ITEMS_TAG);
+                    return stack.isIn(ExtraTags.WOODEN_ITEMS);
                 }
             });
         }

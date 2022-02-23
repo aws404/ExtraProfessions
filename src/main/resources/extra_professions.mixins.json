@@ -9,6 +9,7 @@
     "CookingRecipeSerializerMixin",
     "SerializerAccessor",
     "SimpleInventoryAccessor",
+    "StructureManagerAccessor",
     "StructureProcessorListsAccessor",
     "VillagerEntityAccessor",
     "VillagerTaskListProviderMixin"

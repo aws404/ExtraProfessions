@@ -8,10 +8,10 @@ import net.minecraft.screen.PropertyDelegate;
 
 public class AnnealerScreenHandler extends AbstractFurnaceScreenHandler {
     public AnnealerScreenHandler(int syncId, PlayerInventory playerInventory) {
-        super(ExtraScreenHandlers.LEHR_SCREEN_HANDLER, ExtraProfessionsMod.ANNEALING_RECIPE_TYPE, ExtraProfessionsMod.ANNEALING_RECIPE_BOOK_CATEGORY, syncId, playerInventory);
+        super(ExtraScreenHandlers.ANNEALER, ExtraProfessionsMod.ANNEALING_RECIPE_TYPE, ExtraProfessionsMod.ANNEALING_RECIPE_BOOK_CATEGORY, syncId, playerInventory);
     }
 
     public AnnealerScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ExtraScreenHandlers.LEHR_SCREEN_HANDLER, ExtraProfessionsMod.ANNEALING_RECIPE_TYPE, ExtraProfessionsMod.ANNEALING_RECIPE_BOOK_CATEGORY, syncId, playerInventory, inventory, propertyDelegate);
+        super(ExtraScreenHandlers.ANNEALER, ExtraProfessionsMod.ANNEALING_RECIPE_TYPE, ExtraProfessionsMod.ANNEALING_RECIPE_BOOK_CATEGORY, syncId, playerInventory, inventory, propertyDelegate);
     }
 }

@@ -68,7 +68,7 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     public boolean isValid(int slot, ItemStack stack) {
-        return stack.isIn(ExtraTags.WOODEN_ITEMS_TAG);
+        return stack.isIn(ExtraTags.WOODEN_ITEMS);
     }
 
     public void addStack(ItemStack stack) {

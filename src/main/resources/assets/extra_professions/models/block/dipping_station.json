@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"0": "extra_professions:block/dipping_station_top",
 		"1": "extra_professions:block/dipping_station_side",
@@ -92,7 +92,7 @@
 			"from": [2, 13, 2],
 			"to": [14, 13, 14],
 			"faces": {
-				"up": {"uv": [1, 1, 15, 15], "texture": "#3", "cullface": "up", "tintindex": 0}
+				"up": {"uv": [1, 1, 15, 15], "texture": "#3", "cullface": "up"}
 			}
 		}
 	]

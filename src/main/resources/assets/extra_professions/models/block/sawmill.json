@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"0": "extra_professions:block/sawmill_front",
 		"1": "extra_professions:block/sawmill_side",
@@ -111,7 +111,6 @@
 			}
 		}
 	],
-	"display": {},
 	"groups": [
 		0,
 		1,

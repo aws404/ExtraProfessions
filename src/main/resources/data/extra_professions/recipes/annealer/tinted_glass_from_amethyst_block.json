@@ -1,10 +1,10 @@
 {
   "type": "extra_professions:annealing",
   "ingredient": {
-    "tag": "c:sandstone_slabs"
+    "item": "minecraft:amethyst_block"
   },
-  "result": "minecraft:glass_pane",
+  "result": "minecraft:tinted_glass",
   "count": 2,
   "experience": 0,
-  "cookingtime": 100
+  "cookingtime": 200
 }

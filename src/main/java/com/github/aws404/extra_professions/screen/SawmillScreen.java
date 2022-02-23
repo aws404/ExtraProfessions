@@ -3,6 +3,8 @@ package com.github.aws404.extra_professions.screen;
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     private static final Identifier TEXTURE = ExtraProfessionsMod.id("textures/gui/container/sawmill.png");
     private static final int SCROLLBAR_WIDTH = 12;
@@ -24,7 +27,7 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     private static final int RECIPE_LIST_ROWS = 3;
     private static final int RECIPE_ENTRY_WIDTH = 16;
     private static final int RECIPE_ENTRY_HEIGHT = 18;
-    private static final int SCROLLBAR_AREA_HEIGHT = 54;
+    private static final int SCROLLBAR_AREA_HEIGHT = RECIPE_ENTRY_HEIGHT * RECIPE_LIST_ROWS;
     private static final int RECIPE_LIST_OFFSET_X = 52;
     private static final int RECIPE_LIST_OFFSET_Y = 14;
     private float scrollAmount;

@@ -1,0 +1,197 @@
+{
+  "profession": "extra_professions:glazier",
+  "replace": false,
+  "offers": {
+    "novice": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:glass",
+        "price": 1,
+        "count": 6,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:coal",
+        "price": 15,
+        "max_uses": 16,
+        "experience": 2
+      }
+    ],
+    "apprentice": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:glass_pane",
+        "price": 1,
+        "count": 16,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:sand",
+        "price": 22,
+        "max_uses": 12,
+        "experience": 2
+      }
+    ],
+    "journeyman": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:white_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:orange_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:magenta_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:light_blue_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:yellow_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:lime_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:pink_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:gray_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:light_gray_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:cyan_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:purple_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:blue_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:brown_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:green_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:red_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:black_stained_glass",
+        "price": 1,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 10
+      }
+    ],
+    "expert": [
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:red_sand",
+        "price": 20,
+        "max_uses": 12,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:amethyst_shard",
+        "price": 1,
+        "count": 2,
+        "max_uses": 3,
+        "experience": 15
+      }
+    ],
+    "master": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:tinted_glass",
+        "price": 2,
+        "count": 4,
+        "max_uses": 12,
+        "experience": 30
+      }
+    ]
+  }
+}

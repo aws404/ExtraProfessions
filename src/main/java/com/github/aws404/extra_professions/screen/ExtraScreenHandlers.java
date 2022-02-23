@@ -5,6 +5,6 @@ import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
 
 public class ExtraScreenHandlers {
-    public static final ScreenHandlerType<SawmillScreenHandler> SAWMILL_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("sawmill"), SawmillScreenHandler::new);
-    public static final ScreenHandlerType<AnnealerScreenHandler> LEHR_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("lehr"), AnnealerScreenHandler::new);
+    public static final ScreenHandlerType<SawmillScreenHandler> SAWMILL = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("sawmill"), SawmillScreenHandler::new);
+    public static final ScreenHandlerType<AnnealerScreenHandler> ANNEALER = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("lehr"), AnnealerScreenHandler::new);
 }

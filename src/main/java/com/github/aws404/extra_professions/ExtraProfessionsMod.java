@@ -109,8 +109,8 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ExtraBlocks.SAWMILL_BLOCK, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ExtraBlocks.DIPPING_STATION_BLOCK, RenderLayer.getTranslucent());
-		ScreenRegistry.register(ExtraScreenHandlers.SAWMILL_SCREEN_HANDLER, SawmillScreen::new);
-		ScreenRegistry.register(ExtraScreenHandlers.LEHR_SCREEN_HANDLER, AnnealerScreen::new);
+		ScreenRegistry.register(ExtraScreenHandlers.SAWMILL, SawmillScreen::new);
+		ScreenRegistry.register(ExtraScreenHandlers.ANNEALER, AnnealerScreen::new);
 	}
 
 	@Override
@@ -123,8 +123,8 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 
 		// Add new buildings to villages
 		StructurePoolAddCallback.EVENT.register(structurePool -> {
-			if (ExtraStructurePools.EXTRA_STRUCTURES.containsKey(structurePool.getId())) {
-				ExtraStructurePools.EXTRA_STRUCTURES.get(structurePool.getId()).forEach(pair -> structurePool.addStructurePoolElement(pair.getFirst(), pair.getSecond()));
+			if (ExtraStructurePools.STRUCTURES_POOL_ADDITIONS.containsKey(structurePool.getId())) {
+				ExtraStructurePools.STRUCTURES_POOL_ADDITIONS.get(structurePool.getId()).forEach(pair -> structurePool.addStructurePoolElement(pair.getFirst(), pair.getSecond()));
 			}
 		});
 

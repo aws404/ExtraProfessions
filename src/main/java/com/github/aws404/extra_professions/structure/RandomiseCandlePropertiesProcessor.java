@@ -34,6 +34,6 @@ public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<RandomiseCandlePropertiesProcessor> getType() {
-        return ExtraStructureProcessors.RANDOMISE_CANDLE_PROPERTIES_PROCESSOR;
+        return ExtraStructureProcessors.RANDOMISE_CANDLES_PROCESSOR;
     }
 }
