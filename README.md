@@ -6,17 +6,17 @@ Add extra villager professions, including workstations and village buildings.
 The lumberjack manages the new lumber farm buildings, **chopping down trees** and **planting new ones** in their place or on spare **podzol** blocks.  
 Its workstation is the **sawmill** block, which also adds a new way of **crafting wood products**, sometimes at a reduced material cost.
 They will also trade a variety of wooden products with you, depending on their surroundings.
-![Image of the Lumberjack](https://imgur.com/YMeJAVS.png)
+![Image of the Lumberjack](./img/Lumberjack.png)
 
 ### Glazier
 The glazier is the master of **glass-work**. 
 Using there workstation, the **annealer**, they can make glass and other related items at **double the speed** and in some cases **reduced material cost**.  See the annealer recipe book for more.
 They will also trade a variety of glass products with you, learning newer and advanced glazing skills as they level up.
-![Image of the Glazier](https://imgur.com/Fco8cV8.png)
+![Image of the Glazier](./img/Glazier.png)
 
 ### Chandler
-The chandler is your friendly local **candle maker**, using their workstation, the **dipping station** they will trade **wax** and **candle** related items with you.
-![Image of the Chandler](https://imgur.com/c4aZrYm.png)
+The chandler is your friendly local **candle maker**, using their workstation, the **dipping station** they will trade **wax** and **candle** related items with you. Even you can use the dipping station to **make candles** at **reduced material cost**.
+![Image of the Chandler](./img/Chandler.png)
 
 # Downloads
 * [Modrinth](https://modrinth.com/mod/extra_professions)

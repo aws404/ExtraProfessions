@@ -5,6 +5,8 @@
 
   "container.sawmill": "Sawmill",
   "container.annealer": "Annealer",
+  "container.dipping_station": "Dipping Station",
+  "container.dipping_station.wax_slot": "Candle Wax Item",
 
   "entity.minecraft.villager.lumberjack": "Lumberjack",
   "entity.minecraft.villager.chandler": "Chandler",
@@ -12,6 +14,7 @@
 
   "gui.recipebook.toggleRecipes.anneal": "Showing Annealable",
 
-  "stat.extra_profession.open_sawmill": "Sawmills Opened",
-  "stat.extra_profession.interact_with_annealer": "Interacted with Annealer"
+  "stat.extra_professions.open_sawmill": "Sawmills Opened",
+  "stat.extra_professions.interact_with_annealer": "Interactions with Annealer",
+  "stat.extra_professions.interact_with_dipping_station": "Interactions with Dipping Station"
 }

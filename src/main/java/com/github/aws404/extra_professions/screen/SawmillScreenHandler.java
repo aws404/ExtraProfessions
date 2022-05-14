@@ -1,10 +1,12 @@
 package com.github.aws404.extra_professions.screen;
 
+import com.google.common.collect.Lists;
+
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.ExtraTags;
 import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
-import com.google.common.collect.Lists;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;

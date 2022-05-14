@@ -2,6 +2,7 @@ package com.github.aws404.extra_professions.recipe;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.block.ExtraBlocks;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.Ingredient;

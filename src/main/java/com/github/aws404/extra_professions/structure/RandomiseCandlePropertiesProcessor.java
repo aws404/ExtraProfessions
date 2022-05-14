@@ -1,7 +1,12 @@
 package com.github.aws404.extra_professions.structure;
 
 import com.mojang.serialization.Codec;
+import org.jetbrains.annotations.Nullable;
+
+import com.github.aws404.extra_professions.ExtraProfessionsMod;
+
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
@@ -9,9 +14,10 @@ import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Random;
 
 public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
@@ -25,15 +31,16 @@ public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
             return structureBlockInfo2;
         }
         Random random = data.getRandom(structureBlockInfo2.pos);
-        BlockState newState = BlockTags.CANDLES.getRandom(random).getDefaultState()
-                .with(CandleBlock.CANDLES, random.nextInt(1, 5))
-                .with(CandleBlock.LIT, random.nextBoolean());
-
-        return new Structure.StructureBlockInfo(structureBlockInfo2.pos, newState, structureBlockInfo2.nbt);
+        Optional<BlockState> state = Registry.BLOCK.getEntryList(BlockTags.CANDLES).flatMap(registryEntries -> registryEntries.getRandom(random)).map(blockRegistryEntry ->
+                blockRegistryEntry.value()
+                    .getDefaultState()
+                    .with(CandleBlock.CANDLES, random.nextInt(1, 5))
+                    .with(CandleBlock.LIT, random.nextBoolean()));
+        return new Structure.StructureBlockInfo(structureBlockInfo2.pos, state.orElse(Blocks.AIR.getDefaultState()), structureBlockInfo2.nbt);
     }
 
     @Override
     protected StructureProcessorType<RandomiseCandlePropertiesProcessor> getType() {
-        return ExtraStructureProcessors.RANDOMISE_CANDLES_PROCESSOR;
+        return ExtraProfessionsMod.RANDOMISE_CANDLES_PROCESSOR;
     }
 }

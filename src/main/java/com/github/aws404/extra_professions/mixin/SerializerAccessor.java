@@ -1,8 +1,9 @@
 package com.github.aws404.extra_professions.mixin;
 
-import net.minecraft.recipe.CuttingRecipe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
+
+import net.minecraft.recipe.CuttingRecipe;
 
 @Mixin(CuttingRecipe.Serializer.class)
 public interface SerializerAccessor {

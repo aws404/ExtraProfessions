@@ -1,11 +1,13 @@
 package com.github.aws404.extra_professions.tasks;
 
-import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
-import com.github.aws404.extra_professions.mixin.SimpleInventoryAccessor;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+
+import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
+import com.github.aws404.extra_professions.mixin.SimpleInventoryAccessor;
+
 import net.minecraft.entity.ai.brain.BlockPosLookTarget;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
@@ -57,7 +59,7 @@ public class SwapItemsWithSawmillTask extends Task<VillagerEntity> {
             });
 
             station.getItemCounts().forEach((item, integer) -> {
-                if (ItemTags.SAPLINGS.contains(item) && villagerItemCounts.getInt(item) < KEEP_ITEM_COUNT) {
+                if (item.getRegistryEntry().isIn(ItemTags.SAPLINGS) && villagerItemCounts.getInt(item) < KEEP_ITEM_COUNT) {
                     int count = Math.min(KEEP_ITEM_COUNT - villagerItemCounts.getInt(item), integer);
                     ItemStack stack = new ItemStack(item, count);
                     if (entity.getInventory().canInsert(stack)) {

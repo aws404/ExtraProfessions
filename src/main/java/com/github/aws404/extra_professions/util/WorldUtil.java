@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.util;
 
 import com.google.common.collect.Lists;
+
 import net.minecraft.SharedConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.JigsawOrientation;

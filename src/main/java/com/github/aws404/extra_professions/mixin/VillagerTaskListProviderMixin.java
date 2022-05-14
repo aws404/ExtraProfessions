@@ -1,23 +1,25 @@
 package com.github.aws404.extra_professions.mixin;
 
+import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Pair;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.tasks.BreakNearbyLeavesTask;
 import com.github.aws404.extra_professions.tasks.CutDownTreeTask;
 import com.github.aws404.extra_professions.tasks.PlantSaplingOnPodzolTask;
 import com.github.aws404.extra_professions.tasks.SwapItemsWithSawmillTask;
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.village.VillagerProfession;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VillagerTaskListProvider.class)
 public abstract class VillagerTaskListProviderMixin {

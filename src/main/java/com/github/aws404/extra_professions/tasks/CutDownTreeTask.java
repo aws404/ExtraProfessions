@@ -1,9 +1,12 @@
 package com.github.aws404.extra_professions.tasks;
 
-import com.github.aws404.extra_professions.util.WorldUtil;
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.Block;
+import org.jetbrains.annotations.Nullable;
+
+import com.github.aws404.extra_professions.util.WorldUtil;
+
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.brain.BlockPosLookTarget;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
@@ -13,21 +16,26 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.ItemTags;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class CutDownTreeTask extends Task<VillagerEntity> {
 
     @Nullable
     private BlockPos currentTreeBase;
+    @Nullable
+    private BlockPos standingPosition;
     private List<BlockPos> logBlocksToBreak = List.of();
     private long nextResponseTime;
 
@@ -48,7 +56,17 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
                     for(int z = -4; z <= 4; ++z) {
                         mutable.set(villagerEntity.getX() + (double)x, villagerEntity.getY() + (double)y, villagerEntity.getZ() + (double)z);
                         if (isValidTreeBase(mutable, serverWorld)) {
-                            this.currentTreeBase = new BlockPos(mutable);
+                            this.currentTreeBase = mutable.toImmutable();
+                            for (Direction value : Direction.Type.HORIZONTAL) {
+                                BlockPos.Mutable pos = new BlockPos.Mutable().set(mutable).move(value);
+                                if (serverWorld.getBlockState(pos).isAir()) {
+                                    this.standingPosition = pos.toImmutable();
+                                    break;
+                                }
+                            }
+                            if (this.standingPosition == null) {
+                                this.standingPosition = this.currentTreeBase;
+                            }
                             this.logBlocksToBreak = WorldUtil.traceUpwardsBlocks(serverWorld, this.currentTreeBase, state -> state.isIn(BlockTags.LOGS));
                             return true;
                         }
@@ -66,54 +84,62 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
 
     private static boolean isValidTreeBase(BlockPos pos, ServerWorld world) {
         BlockState blockState = world.getBlockState(pos);
-        Block block = blockState.getBlock();
-        Block downBlock = world.getBlockState(pos.down()).getBlock();
-        Block upBlock = world.getBlockState(pos.up()).getBlock();
+        BlockState downBlock = world.getBlockState(pos.down());
+        BlockState upBlock = world.getBlockState(pos.up());
 
-        return BlockTags.LOGS.contains(block) && block == upBlock && BlockTags.DIRT.contains(downBlock);
+        return blockState.isIn(BlockTags.LOGS) && blockState.isOf(upBlock.getBlock()) && downBlock.isIn(BlockTags.DIRT);
     }
 
     protected void run(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
-        if (this.currentTreeBase != null && !this.logBlocksToBreak.isEmpty()) {
+        if (this.currentTreeBase != null && this.standingPosition != null &&  !this.logBlocksToBreak.isEmpty()) {
             villagerEntity.getBrain().remember(MemoryModuleType.LOOK_TARGET, new BlockPosLookTarget(this.logBlocksToBreak.get(0)));
-            villagerEntity.getBrain().remember(MemoryModuleType.WALK_TARGET, new WalkTarget(this.currentTreeBase.add(1, 0, 0), 0.5F, 0));
+            villagerEntity.getBrain().remember(MemoryModuleType.WALK_TARGET, new WalkTarget(this.standingPosition, 0.5F, 0));
         }
+        villagerEntity.getBrain().remember(MemoryModuleType.INTERACTION_TARGET, villagerEntity); // Stops the HoldTradeOffersTask from changing the held item
+        villagerEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
+        villagerEntity.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.0F);
     }
 
     protected void finishRunning(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
+        if (this.currentTreeBase != null && serverWorld.getBlockState(this.currentTreeBase).isAir()) {
+            BlockItem sapling = takeSapling(villagerEntity);
+            if (sapling != null) {
+                BlockState state = sapling.getBlock().getDefaultState();
+                if (serverWorld.canPlace(state, this.currentTreeBase, null)) {
+                    serverWorld.setBlockState(this.currentTreeBase, state);
+                    serverWorld.playSound(null, this.currentTreeBase.getX(), this.currentTreeBase.getY(), this.currentTreeBase.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                }
+            }
+        }
+
         villagerEntity.getBrain().forget(MemoryModuleType.LOOK_TARGET);
         villagerEntity.getBrain().forget(MemoryModuleType.WALK_TARGET);
         this.currentTreeBase = null;
+        this.standingPosition = null;
         this.logBlocksToBreak.clear();
+        villagerEntity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        villagerEntity.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.085F);
+        villagerEntity.getBrain().forget(MemoryModuleType.INTERACTION_TARGET);
     }
 
     protected void keepRunning(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
-        if (this.currentTreeBase != null && this.logBlocksToBreak.size() > 0) {
+        if (this.currentTreeBase != null && this.standingPosition != null && this.logBlocksToBreak.size() > 0) {
             BlockPos currentTarget = this.logBlocksToBreak.get(0);
             villagerEntity.getBrain().remember(MemoryModuleType.LOOK_TARGET, new BlockPosLookTarget(currentTarget));
-            villagerEntity.getBrain().remember(MemoryModuleType.WALK_TARGET, new WalkTarget(this.currentTreeBase.add(1, 0, 0), 0.5F, 0));
+            villagerEntity.getBrain().remember(MemoryModuleType.WALK_TARGET, new WalkTarget(this.standingPosition, 0.5F, 0));
 
             if (this.currentTreeBase.isWithinDistance(villagerEntity.getPos(), 1.5D) && this.nextResponseTime <= l) {
-                if (BlockTags.LOGS.contains(serverWorld.getBlockState(currentTarget).getBlock())) {
+                if (serverWorld.getBlockState(currentTarget).isIn(BlockTags.LOGS)) {
+                    villagerEntity.swingHand(Hand.MAIN_HAND);
                     serverWorld.breakBlock(currentTarget, true, villagerEntity);
                     this.nextResponseTime = l + 20L;
                     this.logBlocksToBreak.remove(0);
 
                     if (this.logBlocksToBreak.isEmpty()) {
-                        BlockItem sapling = takeSapling(villagerEntity);
-                        if (sapling != null) {
-                            BlockState state = sapling.getBlock().getDefaultState();
-                            if (serverWorld.canPlace(state, this.currentTreeBase, null)) {
-                                serverWorld.setBlockState(this.currentTreeBase, state);
-                                serverWorld.playSound(null, this.currentTreeBase.getX(), this.currentTreeBase.getY(), this.currentTreeBase.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-                                this.currentTreeBase = null;
-                            }
-                        }
+                        this.stop(serverWorld, villagerEntity, l);
                     }
                 } else {
-                    this.currentTreeBase = null;
-                    this.logBlocksToBreak.clear();
+                    this.stop(serverWorld, villagerEntity, l);
                 }
             }
         }
@@ -122,7 +148,7 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
     public static BlockItem takeSapling(VillagerEntity entity) {
         for (int i = 0; i < entity.getInventory().size(); i++) {
             ItemStack stack = entity.getInventory().getStack(i);
-            if (ItemTags.SAPLINGS.contains(stack.getItem()) && stack.getItem() instanceof BlockItem sapling) {
+            if (stack.isIn(ItemTags.SAPLINGS) && stack.getItem() instanceof BlockItem sapling) {
                 stack.decrement(1);
                 return sapling;
             }

@@ -3,6 +3,7 @@ package com.github.aws404.extra_professions.block_entity;
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.screen.AnnealerScreenHandler;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;

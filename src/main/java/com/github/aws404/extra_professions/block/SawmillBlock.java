@@ -1,7 +1,10 @@
 package com.github.aws404.extra_professions.block;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.github.aws404.extra_professions.ExtraStats;
 import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
+
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -20,7 +23,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class SawmillBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -51,8 +53,8 @@ public class SawmillBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof Inventory) {
-                ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
+            if (blockEntity instanceof Inventory inventory) {
+                ItemScatterer.spawn(world, pos, inventory);
                 world.updateComparators(pos, this);
             }
 

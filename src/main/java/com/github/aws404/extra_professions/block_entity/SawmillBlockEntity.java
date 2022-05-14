@@ -1,11 +1,13 @@
 package com.github.aws404.extra_professions.block_entity;
 
-import com.github.aws404.extra_professions.ExtraTags;
-import com.github.aws404.extra_professions.block.ExtraBlocks;
-import com.github.aws404.extra_professions.screen.SawmillScreenHandler;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+
+import com.github.aws404.extra_professions.ExtraTags;
+import com.github.aws404.extra_professions.block.ExtraBlocks;
+import com.github.aws404.extra_professions.screen.SawmillScreenHandler;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;

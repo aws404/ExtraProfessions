@@ -1,7 +1,10 @@
 package com.github.aws404.extra_professions.block;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.github.aws404.extra_professions.ExtraStats;
 import com.github.aws404.extra_professions.block_entity.AnnealerBlockEntity;
+
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,7 +17,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 

@@ -10,8 +10,10 @@
     "SerializerAccessor",
     "SimpleInventoryAccessor",
     "StructureManagerAccessor",
-    "StructureProcessorListsAccessor",
+    "StructurePoolAccessor",
     "VillagerEntityAccessor",
+    "VillagerEntityMixin",
+    "VillagerHeldItemFeatureRendererMixin",
     "VillagerTaskListProviderMixin"
   ],
   "injectors": {

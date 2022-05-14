@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.tasks;
 
 import com.google.common.collect.ImmutableMap;
+
 import net.minecraft.entity.ai.brain.task.Task;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -31,7 +32,7 @@ public class BreakNearbyLeavesTask extends Task<VillagerEntity> {
             for (int y = -1; y <= 1; y++) {
                 for (int z = -1; z <= 1; z++) {
                     BlockPos pos = entity.getBlockPos().add(x, y, z);
-                    if (BlockTags.LEAVES.contains(world.getBlockState(pos).getBlock())) {
+                    if (world.getBlockState(pos).isIn(BlockTags.LEAVES)) {
                         world.breakBlock(pos, true, entity);
                         this.nextResponseTime = time + 20L;
                         return;

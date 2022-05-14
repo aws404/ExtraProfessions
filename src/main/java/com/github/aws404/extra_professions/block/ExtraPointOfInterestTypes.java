@@ -1,7 +1,9 @@
 package com.github.aws404.extra_professions.block;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
+
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
+
 import net.minecraft.world.poi.PointOfInterestType;
 
 public class ExtraPointOfInterestTypes {

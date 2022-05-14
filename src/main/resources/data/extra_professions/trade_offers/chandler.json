@@ -133,7 +133,7 @@
     "apprentice": [
       {
         "type": "minecraft:buy_for_one_emerald",
-        "price": 3,
+        "price": 8,
         "item": "minecraft:honeycomb",
         "max_uses": 12,
         "experience": 10

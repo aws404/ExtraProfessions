@@ -1,6 +1,8 @@
 package com.github.aws404.extra_professions.tasks;
 
 import com.google.common.collect.ImmutableMap;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.brain.BlockPosLookTarget;
@@ -15,7 +17,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
-import org.jetbrains.annotations.Nullable;
 
 public class PlantSaplingOnPodzolTask extends Task<VillagerEntity> {
 
@@ -23,7 +24,7 @@ public class PlantSaplingOnPodzolTask extends Task<VillagerEntity> {
     private BlockPos plantPos;
 
     public PlantSaplingOnPodzolTask() {
-        super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryModuleState.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT));
+        super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryModuleState.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT, MemoryModuleType.SECONDARY_JOB_SITE, MemoryModuleState.VALUE_PRESENT));
     }
 
     @Override
@@ -72,7 +73,7 @@ public class PlantSaplingOnPodzolTask extends Task<VillagerEntity> {
 
     @Override
     protected void keepRunning(ServerWorld world, VillagerEntity entity, long time) {
-        if (this.plantPos != null && this.plantPos.isWithinDistance(entity.getBlockPos(), 1.0)) {
+        if (this.plantPos != null && this.plantPos.isWithinDistance(entity.getBlockPos(), 1.25)) {
             BlockItem sapling = CutDownTreeTask.takeSapling(entity);
             if (sapling != null) {
                 BlockState state = sapling.getBlock().getDefaultState();
