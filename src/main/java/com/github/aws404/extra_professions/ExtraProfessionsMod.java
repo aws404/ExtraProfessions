@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.block.ExtraPointOfInterestTypes;
-import com.github.aws404.extra_professions.mixin.SerializerAccessor;
 import com.github.aws404.extra_professions.mixin.VillagerEntityAccessor;
 import com.github.aws404.extra_professions.recipe.AnnealingRecipe;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
@@ -90,7 +89,7 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 	public static final RecipeType<SawmillRecipe> SAWMILL_RECIPE_TYPE = registerRecipeType(id("sawmill"));
 	public static final RecipeType<AnnealingRecipe> ANNEALING_RECIPE_TYPE = registerRecipeType(id("annealing"));
 
-	public static final RecipeSerializer<SawmillRecipe> SAWMILL_RECIPE_SERIALISER = Registry.register(Registry.RECIPE_SERIALIZER, id("sawmill"), SerializerAccessor.createSerializer(SawmillRecipe::new));
+	public static final RecipeSerializer<SawmillRecipe> SAWMILL_RECIPE_SERIALISER = Registry.register(Registry.RECIPE_SERIALIZER, id("sawmill"), new SawmillRecipe.Serialiser());
 	public static final RecipeSerializer<AnnealingRecipe> ANNEALING_RECIPE_SERIALISER = Registry.register(Registry.RECIPE_SERIALIZER, id("annealing"), new CookingRecipeSerializer<>(AnnealingRecipe::new, 100));
 
 	@Override

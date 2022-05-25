@@ -7,7 +7,6 @@
     "AbstractFurnaceBlockEntityMixin",
     "BlocksAccessor",
     "CookingRecipeSerializerMixin",
-    "SerializerAccessor",
     "SimpleInventoryAccessor",
     "SinglePoolElementAccessor",
     "StructurePoolAccessor",

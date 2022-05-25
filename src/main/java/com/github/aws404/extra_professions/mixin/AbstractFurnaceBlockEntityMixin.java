@@ -16,11 +16,11 @@ import net.minecraft.util.collection.DefaultedList;
 public class AbstractFurnaceBlockEntityMixin {
 
     @Inject(method = "craftRecipe", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;increment(I)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private static void fixRecipeOutputIncrement(Recipe<?> recipe, DefaultedList<ItemStack> slots, int count, CallbackInfoReturnable<Boolean> cir, ItemStack input, ItemStack recipeOutput, ItemStack currentOutput) {
+    private static void extra_professions_fixRecipeOutputIncrement(Recipe<?> recipe, DefaultedList<ItemStack> slots, int count, CallbackInfoReturnable<Boolean> cir, ItemStack input, ItemStack recipeOutput, ItemStack currentOutput) {
         currentOutput.increment(recipeOutput.getCount());
     }
 
     @Redirect(method = "craftRecipe", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;increment(I)V"))
-    private static void voidDefaultBehaviour(ItemStack stack, int amount) {
+    private static void extra_professions_voidDefaultBehaviour(ItemStack stack, int amount) {
     }
 }

@@ -25,7 +25,7 @@ public class VillagerHeldItemFeatureRendererMixin<T extends LivingEntity> {
     @Shadow @Final private HeldItemRenderer heldItemRenderer;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", shift = At.Shift.BEFORE, by = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void renderAxes(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float limbAngle, float limbDistance, float tickDelta, float j, float k, float l, CallbackInfo ci, ItemStack itemStack) {
+    private void extra_professions_renderAxes(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float limbAngle, float limbDistance, float tickDelta, float j, float k, float l, CallbackInfo ci, ItemStack itemStack) {
         if (itemStack.getItem() instanceof AxeItem) {
             float m = livingEntity.handSwingProgress < 0.4 ? -6.0F : -3.0F;
             float delta = Math.max(0.0F, m * (float) Math.pow(livingEntity.handSwingProgress - 0.4F, 2) + 1.0F);

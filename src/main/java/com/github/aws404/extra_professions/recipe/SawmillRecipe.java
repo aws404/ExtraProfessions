@@ -23,4 +23,10 @@ public class SawmillRecipe extends CuttingRecipe {
     public ItemStack createIcon() {
         return new ItemStack(ExtraBlocks.SAWMILL_ITEM);
     }
+
+    public static class Serialiser extends CuttingRecipe.Serializer<SawmillRecipe> {
+        public Serialiser() {
+            super(SawmillRecipe::new);
+        }
+    }
 }

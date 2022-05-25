@@ -30,7 +30,7 @@ public abstract class VillagerTaskListProviderMixin {
     }
 
     @Inject(method = "createWorkTasks", at= @At("HEAD"), cancellable = true)
-    private static void injectWorkTasks(VillagerProfession profession, float speed, CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends Task<? super VillagerEntity>>>> cir) {
+    private static void extra_professions_injectWorkTasks(VillagerProfession profession, float speed, CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends Task<? super VillagerEntity>>>> cir) {
         if (profession == ExtraProfessionsMod.LUMBERJACK_PROFESSION) {
             cir.setReturnValue(
                     ImmutableList.of(
