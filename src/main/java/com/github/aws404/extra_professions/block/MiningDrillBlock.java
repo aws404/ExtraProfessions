@@ -83,9 +83,9 @@ public class MiningDrillBlock extends WallMountedBlock {
 
         BlockStateParticleEffect particle = new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(pos.offset(baseFace)));
         for(int i = 0; i < 3; ++i) {
-            double x = random.nextPredictable(pos.getX() + 0.5D, 0.2D);
-            double y = random.nextPredictable(pos.getY() + 0.5D, 0.2D);
-            double z = random.nextPredictable(pos.getZ() + 0.5D, 0.2D);
+            double x = random.nextTriangular(pos.getX() + 0.5D, 0.2D);
+            double y = random.nextTriangular(pos.getY() + 0.5D, 0.2D);
+            double z = random.nextTriangular(pos.getZ() + 0.5D, 0.2D);
             world.addParticle(particle, x, y, z, 0.2D, 0.2D, 0.2D);
         }
     }
