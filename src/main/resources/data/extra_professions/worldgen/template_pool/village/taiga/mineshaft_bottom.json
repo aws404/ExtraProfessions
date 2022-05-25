@@ -1,0 +1,15 @@
+{
+  "name": "extra_professions:village/taiga/mineshaft_bottom",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "extra_professions:village/taiga/houses/taiga_mineshaft/bottom",
+        "processors": "extra_professions:mineshaft_top",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.mixin;
 
 import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -20,9 +21,5 @@ public interface StructurePoolAccessor {
     void setElementCounts(List<Pair<StructurePoolElement, Integer>> elementCounts);
 
     @Accessor
-    List<StructurePoolElement> getElements();
-
-    @Mutable
-    @Accessor
-    void setElements(List<StructurePoolElement> elements);
+    ObjectArrayList<StructurePoolElement> getElements();
 }

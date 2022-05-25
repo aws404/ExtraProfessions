@@ -1,0 +1,24 @@
+{
+  "name": "extra_professions:village/savanna/mineshaft",
+  "fallback": "extra_professions:village/savanna/mineshaft_bottom",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "extra_professions:village/savanna/houses/savanna_mineshaft/bottom",
+        "processors": "extra_professions:mineshaft_walls",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "extra_professions:village/savanna/houses/savanna_mineshaft/middle",
+        "processors": "extra_professions:mineshaft_walls",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

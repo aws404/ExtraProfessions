@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NIN",
+    "IAI",
+    "SIS"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "A": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+        "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "result": {
+    "item": "extra_professions:mining_drill"
+  }
+}

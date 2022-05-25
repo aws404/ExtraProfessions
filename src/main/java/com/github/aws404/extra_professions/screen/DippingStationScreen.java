@@ -11,9 +11,7 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
         super.render(matrices, mouseX, mouseY, delta);
-        this.textRenderer.draw(matrices, new LiteralText("Max: "+ this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond() + 8, 6710886);
+        this.textRenderer.draw(matrices, Text.literal("Max: "+ this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond() + 8, 6710886);
         this.drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
@@ -45,7 +43,7 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
                 !this.handler.getHoneycombSlot().hasStack() &&
                 this.handler.getCursorStack().isEmpty()
         ) {
-            this.renderTooltip(matrices, List.of(new TranslatableText("container.dipping_station.wax_slot")), x, y);
+            this.renderTooltip(matrices, List.of(Text.literal("container.dipping_station.wax_slot")), x, y);
         }
     }
 

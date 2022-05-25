@@ -36,9 +36,9 @@
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": ">=0.46",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17",
-    "sjvt": ">=1.0.1",
-    "booking_it": "*"
+    "booking_it": "*",
+    "sjvt": "*"
   }
 }

@@ -14,15 +14,15 @@ import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
-    public static final RandomiseCandlePropertiesProcessor INSTANCE = new RandomiseCandlePropertiesProcessor();
-    public static final Codec<RandomiseCandlePropertiesProcessor> CODEC = Codec.unit(() -> INSTANCE);
+    private static final RandomiseCandlePropertiesProcessor INSTANCE = new RandomiseCandlePropertiesProcessor();
+    public static final Codec<RandomiseCandlePropertiesProcessor> CODEC = Codec.unit(INSTANCE);
 
     @Nullable
     @Override
@@ -34,7 +34,7 @@ public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
         Optional<BlockState> state = Registry.BLOCK.getEntryList(BlockTags.CANDLES).flatMap(registryEntries -> registryEntries.getRandom(random)).map(blockRegistryEntry ->
                 blockRegistryEntry.value()
                     .getDefaultState()
-                    .with(CandleBlock.CANDLES, random.nextInt(1, 5))
+                    .with(CandleBlock.CANDLES, random.nextBetween(1, 4))
                     .with(CandleBlock.LIT, random.nextBoolean()));
         return new Structure.StructureBlockInfo(structureBlockInfo2.pos, state.orElse(Blocks.AIR.getDefaultState()), structureBlockInfo2.nbt);
     }

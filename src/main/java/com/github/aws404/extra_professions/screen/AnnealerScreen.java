@@ -9,7 +9,6 @@ import net.minecraft.client.gui.screen.recipebook.AbstractFurnaceRecipeBookScree
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.Set;
@@ -23,7 +22,7 @@ public class AnnealerScreen extends AbstractFurnaceScreen<AnnealerScreenHandler>
     }
 
     protected static class RecipeBookScreen extends AbstractFurnaceRecipeBookScreen {
-        private static final Text TOGGLE_SMELTABLE_RECIPES_TEXT = new TranslatableText("gui.recipebook.toggleRecipes.anneal");
+        private static final Text TOGGLE_SMELTABLE_RECIPES_TEXT = Text.translatable("gui.recipebook.toggleRecipes.anneal");
 
         @Override
         protected Text getToggleCraftableButtonText() {

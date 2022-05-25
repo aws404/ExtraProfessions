@@ -1,0 +1,10 @@
+[
+  {
+    "processor_type": "extra_professions:inherit",
+    "parent": "extra_professions:mineshaft_top"
+  },
+  {
+    "processor_type": "extra_professions:inherit",
+    "parent": "minecraft:zombie_taiga"
+  }
+]

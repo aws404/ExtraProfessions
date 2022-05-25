@@ -27,7 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class CutDownTreeTask extends Task<VillagerEntity> {

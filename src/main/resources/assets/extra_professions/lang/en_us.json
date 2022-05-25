@@ -2,6 +2,7 @@
   "block.extra_professions.sawmill": "Sawmill",
   "block.extra_professions.dipping_station": "Dipping Station",
   "block.extra_professions.annealer": "Annealer",
+  "block.extra_professions.mining_drill": "Mining Drill",
 
   "container.sawmill": "Sawmill",
   "container.annealer": "Annealer",
@@ -11,6 +12,9 @@
   "entity.minecraft.villager.lumberjack": "Lumberjack",
   "entity.minecraft.villager.chandler": "Chandler",
   "entity.minecraft.villager.glazier": "Glazier",
+  "entity.minecraft.villager.miner": "Miner",
+
+  "filled_map.mineshaft": "Mineshaft Explorer Map",
 
   "gui.recipebook.toggleRecipes.anneal": "Showing Annealable",
 

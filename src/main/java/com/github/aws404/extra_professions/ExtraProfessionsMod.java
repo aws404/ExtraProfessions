@@ -16,12 +16,14 @@ import com.github.aws404.extra_professions.screen.DippingStationScreen;
 import com.github.aws404.extra_professions.screen.ExtraScreenHandlers;
 import com.github.aws404.extra_professions.screen.SawmillScreen;
 import com.github.aws404.extra_professions.structure.ExtraStructurePools;
+import com.github.aws404.extra_professions.structure.InheretStructureProcessor;
+import com.github.aws404.extra_professions.structure.PoolIgnoreBoundaryStructureProcessor;
 import com.github.aws404.extra_professions.structure.RandomiseCandlePropertiesProcessor;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 
@@ -32,6 +34,7 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.CookingRecipeSerializer;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvents;
@@ -45,7 +48,9 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 	public static final String MOD_ID = "extra_professions";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Extra Professions");
 
-	public static final StructureProcessorType<RandomiseCandlePropertiesProcessor> RANDOMISE_CANDLES_PROCESSOR = StructureProcessorType.register(sId("randomise_candles"), RandomiseCandlePropertiesProcessor.CODEC);
+	public static final StructureProcessorType<RandomiseCandlePropertiesProcessor> RANDOMISE_CANDLES_PROCESSOR = Registry.register(Registry.STRUCTURE_PROCESSOR, id("randomise_candles"), () -> RandomiseCandlePropertiesProcessor.CODEC);
+	public static final StructureProcessorType<PoolIgnoreBoundaryStructureProcessor> POOL_IGNORE_BOUNDARY_PROCESSOR = Registry.register(Registry.STRUCTURE_PROCESSOR, id("pool_ignore_boundary"), () -> PoolIgnoreBoundaryStructureProcessor.CODEC);
+	public static final StructureProcessorType<InheretStructureProcessor> INHERIT_STRUCTURE_PROCESSOR = Registry.register(Registry.STRUCTURE_PROCESSOR, id("inherit"), () -> InheretStructureProcessor.CODEC);
 
 	public static final VillagerProfession LUMBERJACK_PROFESSION = Registry.register(Registry.VILLAGER_PROFESSION, id("lumberjack"), VillagerProfessionBuilder.create()
 			.id(id("lumberjack"))
@@ -75,18 +80,15 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 			.build()
 	);
 
-	public static final RecipeType<SawmillRecipe> SAWMILL_RECIPE_TYPE = Registry.register(Registry.RECIPE_TYPE, id("sawmill"), new RecipeType<>() {
-		@Override
-		public String toString() {
-			return sId("sawmill");
-		}
-	});
-	public static final RecipeType<AnnealingRecipe> ANNEALING_RECIPE_TYPE = Registry.register(Registry.RECIPE_TYPE, id("annealing"), new RecipeType<>() {
-		@Override
-		public String toString() {
-			return sId("annealing");
-		}
-	});
+	public static final VillagerProfession MINER_PROFESSION = Registry.register(Registry.VILLAGER_PROFESSION, id("miner"), VillagerProfessionBuilder.create()
+			.id(id("miner"))
+			.workstation(ExtraPointOfInterestTypes.MINER)
+			.workSound(SoundEvents.BLOCK_STONE_BREAK)
+			.build()
+	);
+
+	public static final RecipeType<SawmillRecipe> SAWMILL_RECIPE_TYPE = registerRecipeType(id("sawmill"));
+	public static final RecipeType<AnnealingRecipe> ANNEALING_RECIPE_TYPE = registerRecipeType(id("annealing"));
 
 	public static final RecipeSerializer<SawmillRecipe> SAWMILL_RECIPE_SERIALISER = Registry.register(Registry.RECIPE_SERIALIZER, id("sawmill"), SerializerAccessor.createSerializer(SawmillRecipe::new));
 	public static final RecipeSerializer<AnnealingRecipe> ANNEALING_RECIPE_SERIALISER = Registry.register(Registry.RECIPE_SERIALIZER, id("annealing"), new CookingRecipeSerializer<>(AnnealingRecipe::new, 100));
@@ -95,6 +97,7 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ExtraBlocks.SAWMILL_BLOCK, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ExtraBlocks.DIPPING_STATION_BLOCK, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(ExtraBlocks.MINING_DRILL_BLOCK, RenderLayer.getCutout());
 		HandledScreens.register(ExtraScreenHandlers.SAWMILL, SawmillScreen::new);
 		HandledScreens.register(ExtraScreenHandlers.ANNEALER, AnnealerScreen::new);
 		HandledScreens.register(ExtraScreenHandlers.DIPPING_STATION, DippingStationScreen::new);
@@ -125,13 +128,14 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 		return new Identifier(MOD_ID, string);
 	}
 
-	/**
-	 * Create a string identifier with the mod ID as the namespace.
-	 * @param string the identifier's path
-	 * @return the string identifier
-	 */
-	public static String sId(String string) {
-		return MOD_ID + ":" + string;
+	private static <T extends Recipe<?>> RecipeType<T> registerRecipeType(Identifier id) {
+		String sId = id.toString();
+		return Registry.register(Registry.RECIPE_TYPE, id, new RecipeType<>() {
+			@Override
+			public String toString() {
+				return sId;
+			}
+		});
 	}
 
 }

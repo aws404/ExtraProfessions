@@ -16,6 +16,7 @@
     "minecraft:grindstone",
     "extra_professions:sawmill",
     "extra_professions:dipping_station",
-    "extra_professions:annealer"
+    "extra_professions:annealer",
+    "extra_professions:mining_drill"
   ]
 }

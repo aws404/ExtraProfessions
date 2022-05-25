@@ -6,7 +6,7 @@
       "weight": 1,
       "element": {
         "location": "extra_professions:village/plains/houses/plains_chandler_house_1",
-        "processors": "minecraft:empty",
+        "processors": "extra_professions:randomise_candles_mossify_10_percent",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }
@@ -15,7 +15,7 @@
       "weight": 1,
       "element": {
         "location": "extra_professions:village/desert/houses/desert_chandler_house_1",
-        "processors": "minecraft:empty",
+        "processors": "extra_professions:randomise_candles",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }
@@ -24,7 +24,7 @@
       "weight": 1,
       "element": {
         "location": "extra_professions:village/savanna/houses/savanna_chandler_house_1",
-        "processors": "minecraft:empty",
+        "processors": "extra_professions:randomise_candles",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }
@@ -33,7 +33,7 @@
       "weight": 1,
       "element": {
         "location": "extra_professions:village/snowy/houses/snowy_chandler_house_1",
-        "processors": "minecraft:empty",
+        "processors": "extra_professions:randomise_candles",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }
@@ -42,7 +42,7 @@
       "weight": 1,
       "element": {
         "location": "extra_professions:village/taiga/houses/taiga_chandler_house_1",
-        "processors": "minecraft:empty",
+        "processors": "extra_professions:randomise_candles_mossify_10_percent",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }

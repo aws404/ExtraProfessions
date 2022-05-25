@@ -9,7 +9,7 @@
     "CookingRecipeSerializerMixin",
     "SerializerAccessor",
     "SimpleInventoryAccessor",
-    "StructureManagerAccessor",
+    "SinglePoolElementAccessor",
     "StructurePoolAccessor",
     "VillagerEntityAccessor",
     "VillagerEntityMixin",

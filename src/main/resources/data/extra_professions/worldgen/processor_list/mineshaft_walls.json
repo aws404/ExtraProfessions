@@ -1,0 +1,89 @@
+[
+  {
+    "processor_type": "minecraft:rule",
+    "rules": [
+      {
+        "input_predicate": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:stone"
+        },
+        "location_predicate": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "extra_professions:unstable_mineshaft_walls"
+        },
+        "output_state": {
+          "Name": "minecraft:dirt"
+        }
+      }
+    ]
+  },
+  {
+    "processor_type": "minecraft:rule",
+    "rules": [
+      {
+        "input_predicate": {
+          "predicate_type": "minecraft:random_block_match",
+          "block": "minecraft:stone",
+          "probability": 0.001
+        },
+        "location_predicate": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        },
+        "output_state": {
+          "Name": "minecraft:emerald_ore"
+        }
+      },
+      {
+        "input_predicate": {
+          "predicate_type": "minecraft:random_block_match",
+          "block": "minecraft:stone",
+          "probability": 0.01
+        },
+        "location_predicate": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        },
+        "output_state": {
+          "Name": "minecraft:copper_ore"
+        }
+      },
+      {
+        "input_predicate": {
+          "predicate_type": "minecraft:random_block_match",
+          "block": "minecraft:stone",
+          "probability": 0.02
+        },
+        "location_predicate": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        },
+        "output_state": {
+          "Name": "minecraft:iron_ore"
+        }
+      },
+      {
+        "input_predicate": {
+          "predicate_type": "minecraft:random_block_match",
+          "block": "minecraft:stone",
+          "probability": 0.05
+        },
+        "location_predicate": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        },
+        "output_state": {
+          "Name": "minecraft:coal_ore"
+        }
+      }
+    ]
+  },
+  {
+    "processor_type": "minecraft:block_ignore",
+    "blocks": [
+      {
+        "Name": "minecraft:stone"
+      }
+    ]
+  }
+]

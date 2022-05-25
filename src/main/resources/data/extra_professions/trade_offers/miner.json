@@ -1,0 +1,180 @@
+{
+  "profession": "extra_professions:miner",
+  "replace": false,
+  "offers": {
+    "novice": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:stone",
+        "count": 18,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:dirt",
+        "count": 22,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:gravel",
+        "count": 16,
+        "max_uses": 12,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:flint",
+        "price": 1,
+        "count": 18,
+        "max_uses": 16,
+        "experience": 1
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:coal_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:coal",
+        "sell_count": 10,
+        "experience": 2
+      },
+      {
+        "type": "minecraft:type_aware_buy_for_one_emerald",
+        "items": {
+          "default": "minecraft:oak_planks",
+          "minecraft:jungle": "minecraft:jungle_planks",
+          "minecraft:savanna": "minecraft:acacia_planks",
+          "minecraft:snow": "minecraft:spruce_planks",
+          "minecraft:taiga": "minecraft:spruce_planks"
+        },
+        "count": 32,
+        "max_uses": 10,
+        "experience": 1
+      }
+    ],
+    "apprentice": [
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:cobblestone",
+        "price": 16,
+        "max_uses": 16,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:granite",
+        "price": 16,
+        "max_uses": 16,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:andesite",
+        "price": 16,
+        "max_uses": 16,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:buy_for_one_emerald",
+        "item": "minecraft:diorite",
+        "price": 16,
+        "max_uses": 16,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:iron_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:raw_iron",
+        "sell_count": 10,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:copper_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:raw_copper",
+        "sell_count": 10,
+        "experience": 10
+      }
+    ],
+    "journeyman": [
+      {
+        "type": "minecraft:sell_map",
+        "price": 14,
+        "name_key": "filled_map.mineshaft",
+        "feature_tag": "minecraft:mineshaft",
+        "icon": "red_x",
+        "experience": 15
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:gold_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:raw_gold",
+        "sell_count": 10,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:lapis_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:lapis_lazuli",
+        "sell_count": 34,
+        "experience": 10
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:torch",
+        "price": 2,
+        "count": 22,
+        "max_uses": 16,
+        "experience": 10
+      }
+    ],
+    "expert": [
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:redstone_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:redstone",
+        "sell_count": 34,
+        "experience": 15
+      },
+      {
+        "type": "minecraft:sell_item",
+        "item": "minecraft:lantern",
+        "count": 4,
+        "max_uses": 12,
+        "experience": 15
+      },
+      {
+        "type": "minecraft:sell_enchanted_tool",
+        "item": "minecraft:iron_pickaxe",
+        "base_price": 10,
+        "max_uses": 12,
+        "experience": 15
+      }
+    ],
+    "master": [
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:diamond_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:diamond",
+        "sell_count": 10,
+        "experience": 30
+      },
+      {
+        "type": "minecraft:process_item",
+        "item": "minecraft:emerald_ore",
+        "second_count": 5,
+        "sell_item":"minecraft:emerald",
+        "sell_count": 10,
+        "experience": 15
+      }
+    ]
+  }
+}
