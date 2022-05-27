@@ -15,8 +15,12 @@ They will also trade a variety of glass products with you, learning newer and ad
 ![Image of the Glazier](./img/Glazier.png)
 
 ### Chandler
-The chandler is your friendly local **candle maker**, using their workstation, the **dipping station** they will trade **wax** and **candle** related items with you. Even you can use the dipping station to **make candles** at **reduced material cost**.
+The chandler is your friendly local **candle maker**, using their workstation, the **dipping station** they will trade **wax** and **candle** related items with you.   
+Even you can use the dipping station to **make candles** of all colors at **reduced material cost**. You can even use new materials for wax (such as blocks and bottles of honey) and wicks (such as sticks).
 ![Image of the Chandler](./img/Chandler.png)
+
+### Miner
+The miner is 
 
 # Downloads
 * [Modrinth](https://modrinth.com/mod/extra_professions)

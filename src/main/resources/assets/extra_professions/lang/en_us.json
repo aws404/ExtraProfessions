@@ -8,6 +8,7 @@
   "container.annealer": "Annealer",
   "container.dipping_station": "Dipping Station",
   "container.dipping_station.wax_slot": "Candle Wax Item",
+  "container.dipping_station.max_candles": "Max: %s",
 
   "entity.minecraft.villager.lumberjack": "Lumberjack",
   "entity.minecraft.villager.chandler": "Chandler",

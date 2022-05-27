@@ -1,14 +1,12 @@
 plugins {
 	id 'fabric-loom' version '0.11-SNAPSHOT'
-	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+version = System.getenv("VERSION") ? System.getenv("VERSION") : "unversioned"
 
 repositories {
 	maven {
@@ -22,25 +20,28 @@ repositories {
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+	// Fabric Dependencies
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "maven.modrinth:here-be-no-dragons:1.0.0"
-	
+
+	// Mod Dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation include("maven.modrinth:sjvt:${project.sjvt_version}")
 	modImplementation include("maven.modrinth:booking_it:${project.bi_version}")
 	modImplementation include("com.github.Chocohead:Fabric-ASM:v${project.mm_version}") {
 		exclude (group: "net.fabricmc.fabric-api")
 	}
+
+	// Development Environment Mods
+	modImplementation "maven.modrinth:here-be-no-dragons:1.0.0"
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.property "version", version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": version
 	}
 }
 
@@ -63,19 +64,15 @@ jar {
 	}
 }
 
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = project.project_id
+	versionNumber = version
+	versionName = System.getenv("VERSION_NAME") ? System.getenv("VERSION_NAME") : version
+	versionType = System.getenv("ALPHA") ? "alpha" : "release"
+	changelog = System.getenv("CAHNGELOG")
+	uploadFile = remapJar
+	dependencies {
+		required.project "P7dR8mSH" // Mark Fabric API as a required dependency
 	}
 }

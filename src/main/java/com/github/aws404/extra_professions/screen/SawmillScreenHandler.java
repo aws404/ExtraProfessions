@@ -2,9 +2,9 @@ package com.github.aws404.extra_professions.screen;
 
 import com.google.common.collect.Lists;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.ExtraTags;
 import com.github.aws404.extra_professions.block.ExtraBlocks;
+import com.github.aws404.extra_professions.recipe.ExtraRecipeTypes;
 import com.github.aws404.extra_professions.recipe.SawmillRecipe;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -140,7 +140,7 @@ public class SawmillScreenHandler extends ScreenHandler {
         this.selectedRecipe.set(-1);
         this.outputSlot.setStack(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager().getAllMatches(ExtraProfessionsMod.SAWMILL_RECIPE_TYPE, input, this.world);
+            this.availableRecipes = this.world.getRecipeManager().getAllMatches(ExtraRecipeTypes.SAWMILL_RECIPE_TYPE, input, this.world);
         }
     }
 
@@ -172,7 +172,7 @@ public class SawmillScreenHandler extends ScreenHandler {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickTransfer(itemStack2, itemStack);
-            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) : (this.world.getRecipeManager().getFirstMatch(ExtraProfessionsMod.SAWMILL_RECIPE_TYPE, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) : (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) : index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
+            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) : (this.world.getRecipeManager().getFirstMatch(ExtraRecipeTypes.SAWMILL_RECIPE_TYPE, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) : (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) : index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {

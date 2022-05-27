@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.WallMountedBlock;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -88,6 +89,11 @@ public class MiningDrillBlock extends WallMountedBlock {
             double z = random.nextTriangular(pos.getZ() + 0.5D, 0.2D);
             world.addParticle(particle, x, y, z, 0.2D, 0.2D, 0.2D);
         }
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
     }
 
     public BlockState rotate(BlockState state, BlockRotation rotation) {

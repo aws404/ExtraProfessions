@@ -1,13 +1,15 @@
 package com.github.aws404.extra_professions.screen;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
-
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
-
 import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.util.registry.Registry;
+
+import static com.github.aws404.extra_professions.ExtraProfessionsMod.id;
 
 public class ExtraScreenHandlers {
-    public static final ScreenHandlerType<SawmillScreenHandler> SAWMILL = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("sawmill"), SawmillScreenHandler::new);
-    public static final ScreenHandlerType<AnnealerScreenHandler> ANNEALER = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("lehr"), AnnealerScreenHandler::new);
-    public static final ScreenHandlerType<DippingStationScreenHandler> DIPPING_STATION = ScreenHandlerRegistry.registerSimple(ExtraProfessionsMod.id("dipping_station"), DippingStationScreenHandler::new);
+    public static final ScreenHandlerType<SawmillScreenHandler> SAWMILL = Registry.register(Registry.SCREEN_HANDLER, id("sawmill"), new ScreenHandlerType<>(SawmillScreenHandler::new));
+    public static final ScreenHandlerType<AnnealerScreenHandler> ANNEALER = Registry.register(Registry.SCREEN_HANDLER, id("lehr"), new ScreenHandlerType<>(AnnealerScreenHandler::new));
+    public static final ScreenHandlerType<DippingStationScreenHandler> DIPPING_STATION = Registry.register(Registry.SCREEN_HANDLER, id("dipping_station"), new ScreenHandlerType<>(DippingStationScreenHandler::new));
+
+    public static void init() {
+    }
 }

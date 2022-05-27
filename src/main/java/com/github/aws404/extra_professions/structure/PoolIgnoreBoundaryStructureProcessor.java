@@ -5,8 +5,6 @@ import com.google.common.cache.CacheBuilder;
 import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StructureBlock;
 import net.minecraft.block.enums.StructureBlockMode;
@@ -57,6 +55,6 @@ public class PoolIgnoreBoundaryStructureProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<PoolIgnoreBoundaryStructureProcessor> getType() {
-        return ExtraProfessionsMod.POOL_IGNORE_BOUNDARY_PROCESSOR;
+        return ExtraStructureProcessorTypes.POOL_IGNORE_BOUNDARY_PROCESSOR;
     }
 }

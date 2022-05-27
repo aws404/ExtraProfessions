@@ -31,7 +31,7 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
         super.render(matrices, mouseX, mouseY, delta);
-        this.textRenderer.draw(matrices, Text.literal("Max: "+ this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond() + 8, 6710886);
+        this.textRenderer.draw(matrices, Text.translatable("container.dipping_station.max_candles", this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond() + 8, 6710886);
         this.drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
@@ -43,7 +43,7 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
                 !this.handler.getHoneycombSlot().hasStack() &&
                 this.handler.getCursorStack().isEmpty()
         ) {
-            this.renderTooltip(matrices, List.of(Text.literal("container.dipping_station.wax_slot")), x, y);
+            this.renderTooltip(matrices, List.of(Text.translatable("container.dipping_station.wax_slot")), x, y);
         }
     }
 

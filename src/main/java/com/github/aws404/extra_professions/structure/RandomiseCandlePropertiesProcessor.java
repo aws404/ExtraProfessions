@@ -3,8 +3,6 @@ package com.github.aws404.extra_professions.structure;
 import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CandleBlock;
@@ -41,6 +39,6 @@ public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<RandomiseCandlePropertiesProcessor> getType() {
-        return ExtraProfessionsMod.RANDOMISE_CANDLES_PROCESSOR;
+        return ExtraStructureProcessorTypes.RANDOMISE_CANDLES_PROCESSOR;
     }
 }

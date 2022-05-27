@@ -26,7 +26,7 @@ public class ExtraStructurePools {
     private static final int LUMBER_FARM_CHANCE = 3;
     private static final int CHANDLER_HOUSE_CHANCE = 2;
     private static final int GLAZIER_SHOP_CHANCE =  1;
-    private static final int MINESHAFT_CHANCE = 200;
+    private static final int MINESHAFT_CHANCE = 2;
 
     public static final Map<Identifier, List<StructureAdditionData>> STRUCTURES_POOL_ADDITIONS = Map.of(
             new Identifier("minecraft:village/plains/houses"), List.of(

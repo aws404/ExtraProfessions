@@ -5,8 +5,6 @@ import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
-
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.processor.StructureProcessor;
@@ -46,6 +44,6 @@ public class InheretStructureProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<InheretStructureProcessor> getType() {
-        return ExtraProfessionsMod.INHERIT_STRUCTURE_PROCESSOR;
+        return ExtraStructureProcessorTypes.INHERIT_STRUCTURE_PROCESSOR;
     }
 }

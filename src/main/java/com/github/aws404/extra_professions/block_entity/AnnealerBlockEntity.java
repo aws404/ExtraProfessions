@@ -1,7 +1,7 @@
 package com.github.aws404.extra_professions.block_entity;
 
-import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.block.ExtraBlocks;
+import com.github.aws404.extra_professions.recipe.ExtraRecipeTypes;
 import com.github.aws404.extra_professions.screen.AnnealerScreenHandler;
 
 import net.minecraft.block.BlockState;
@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class AnnealerBlockEntity extends AbstractFurnaceBlockEntity {
     public AnnealerBlockEntity(BlockPos pos, BlockState state) {
-        super(ExtraBlocks.ANNEALER_BLOCK_ENTITY, pos, state, ExtraProfessionsMod.ANNEALING_RECIPE_TYPE);
+        super(ExtraBlocks.ANNEALER_BLOCK_ENTITY, pos, state, ExtraRecipeTypes.ANNEALING_RECIPE_TYPE);
     }
 
     @Override
