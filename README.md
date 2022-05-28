@@ -1,7 +1,8 @@
 # Extra Professions Mod
 [![GitHub release](https://img.shields.io/github/release/aws404/ExtraProfessions.svg?style=popout&label=github)](https://github.com/aws404/ExtraProfessions/releases/latest)
 [![CurseForge](https://img.shields.io/static/v1?style=popout&label=modrinth&message=project&color=2DE391)](https://modrinth.com/mod/extra_professions)
-[![CurseForge](https://img.shields.io/static/v1?style=popout&label=curseforge&message=project&color=6441A4)](https://www.curseforge.com/minecraft/mc-mods/extra_professions)
+[![CurseForge](https://img.shields.io/static/v1?style=popout&label=curseforge&message=project&color=6441A4)](https://www.curseforge.com/minecraft/mc-mods/extra-professions)
+
 Add extra villager professions, including workstations and village buildings. 
 
 ## Added Professions
@@ -31,6 +32,7 @@ The miner will also buy and sell the spoils of their mine with you.
 
 # Downloads
 * [Modrinth](https://modrinth.com/mod/extra_professions)
+* [CurseForge](https://www.curseforge.com/minecraft/mc-mods/extra-professions)
 * [Github Releases](https://github.com/aws404/ExtraProfessions/releases)
 
 ## Dependencies
