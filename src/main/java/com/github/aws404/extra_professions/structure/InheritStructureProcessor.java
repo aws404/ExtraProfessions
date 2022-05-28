@@ -18,13 +18,13 @@ import net.minecraft.world.WorldView;
 
 import java.util.function.Function;
 
-public class InheretStructureProcessor extends StructureProcessor {
+public class InheritStructureProcessor extends StructureProcessor {
     private static final Logger LOGGER = LogUtils.getLogger();
-    public static final Codec<InheretStructureProcessor> CODEC = StructureProcessorType.REGISTRY_CODEC.fieldOf("parent").xmap(InheretStructureProcessor::new, o -> o.parentList).codec();
+    public static final Codec<InheritStructureProcessor> CODEC = StructureProcessorType.REGISTRY_CODEC.fieldOf("parent").xmap(InheritStructureProcessor::new, o -> o.parentList).codec();
 
     private final RegistryEntry<StructureProcessorList> parentList;
 
-    public InheretStructureProcessor(RegistryEntry<StructureProcessorList> parentList) {
+    public InheritStructureProcessor(RegistryEntry<StructureProcessorList> parentList) {
         this.parentList = parentList;
     }
 
@@ -43,7 +43,7 @@ public class InheretStructureProcessor extends StructureProcessor {
     }
 
     @Override
-    protected StructureProcessorType<InheretStructureProcessor> getType() {
+    protected StructureProcessorType<InheritStructureProcessor> getType() {
         return ExtraStructureProcessorTypes.INHERIT_STRUCTURE_PROCESSOR;
     }
 }

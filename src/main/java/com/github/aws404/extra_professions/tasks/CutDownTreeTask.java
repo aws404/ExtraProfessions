@@ -30,7 +30,6 @@ import net.minecraft.world.GameRules;
 import java.util.List;
 
 public class CutDownTreeTask extends Task<VillagerEntity> {
-
     @Nullable
     private BlockPos currentTreeBase;
     @Nullable
@@ -42,38 +41,34 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
         super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryModuleState.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT, MemoryModuleType.SECONDARY_JOB_SITE, MemoryModuleState.VALUE_PRESENT), 200, 600);
     }
 
+    @Override
     protected boolean shouldRun(ServerWorld serverWorld, VillagerEntity villagerEntity) {
         if (!serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             return false;
         } else if (villagerDoesNotHaveSapling(villagerEntity)) {
             return false;
         } else {
-            BlockPos.Mutable mutable = villagerEntity.getBlockPos().mutableCopy();
+            WorldUtil.getRelativePositionsRandomly(villagerEntity.getBlockPos(), 4, 2, 4)
+                    .filter(pos -> isValidTreeBase(pos, serverWorld))
+                    .findFirst()
+                    .ifPresent(pos -> {
+                        this.currentTreeBase = pos;
 
-            for(int x = -4; x <= 4; ++x) {
-                for(int y = -2; y <= 2; ++y) {
-                    for(int z = -4; z <= 4; ++z) {
-                        mutable.set(villagerEntity.getX() + (double)x, villagerEntity.getY() + (double)y, villagerEntity.getZ() + (double)z);
-                        if (isValidTreeBase(mutable, serverWorld)) {
-                            this.currentTreeBase = mutable.toImmutable();
-                            for (Direction value : Direction.Type.HORIZONTAL) {
-                                BlockPos.Mutable pos = new BlockPos.Mutable().set(mutable).move(value);
-                                if (serverWorld.getBlockState(pos).isAir()) {
-                                    this.standingPosition = pos.toImmutable();
-                                    break;
-                                }
+                        for (Direction value : Direction.Type.HORIZONTAL) {
+                            if (serverWorld.getBlockState(pos.offset(value)).isAir()) {
+                                this.standingPosition = pos.offset(value);
+                                break;
                             }
-                            if (this.standingPosition == null) {
-                                this.standingPosition = this.currentTreeBase;
-                            }
-                            this.logBlocksToBreak = WorldUtil.traceUpwardsBlocks(serverWorld, this.currentTreeBase, state -> state.isIn(BlockTags.LOGS));
-                            return true;
                         }
-                    }
-                }
-            }
 
-            return false;
+                        if (this.standingPosition == null) {
+                            this.standingPosition = this.currentTreeBase;
+                        }
+
+                        this.logBlocksToBreak = WorldUtil.traceUpwardsBlocks(serverWorld, this.currentTreeBase, state -> state.isIn(BlockTags.LOGS));
+                    });
+
+            return this.currentTreeBase != null;
         }
     }
 
@@ -89,6 +84,7 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
         return blockState.isIn(BlockTags.LOGS) && blockState.isOf(upBlock.getBlock()) && downBlock.isIn(BlockTags.DIRT);
     }
 
+    @Override
     protected void run(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
         if (this.currentTreeBase != null && this.standingPosition != null &&  !this.logBlocksToBreak.isEmpty()) {
             villagerEntity.getBrain().remember(MemoryModuleType.LOOK_TARGET, new BlockPosLookTarget(this.logBlocksToBreak.get(0)));
@@ -99,6 +95,7 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
         villagerEntity.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.0F);
     }
 
+    @Override
     protected void finishRunning(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
         if (this.currentTreeBase != null && serverWorld.getBlockState(this.currentTreeBase).isAir()) {
             BlockItem sapling = takeSapling(villagerEntity);
@@ -115,19 +112,20 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
         villagerEntity.getBrain().forget(MemoryModuleType.WALK_TARGET);
         this.currentTreeBase = null;
         this.standingPosition = null;
-        this.logBlocksToBreak.clear();
+        this.logBlocksToBreak = List.of();
         villagerEntity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
         villagerEntity.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.085F);
         villagerEntity.getBrain().forget(MemoryModuleType.INTERACTION_TARGET);
     }
 
+    @Override
     protected void keepRunning(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
         if (this.currentTreeBase != null && this.standingPosition != null && this.logBlocksToBreak.size() > 0) {
             BlockPos currentTarget = this.logBlocksToBreak.get(0);
             villagerEntity.getBrain().remember(MemoryModuleType.LOOK_TARGET, new BlockPosLookTarget(currentTarget));
             villagerEntity.getBrain().remember(MemoryModuleType.WALK_TARGET, new WalkTarget(this.standingPosition, 0.5F, 0));
 
-            if (this.currentTreeBase.isWithinDistance(villagerEntity.getPos(), 1.5D) && this.nextResponseTime <= l) {
+            if (this.currentTreeBase.isWithinDistance(villagerEntity.getPos(), 2.0D) && this.nextResponseTime <= l) {
                 if (serverWorld.getBlockState(currentTarget).isIn(BlockTags.LOGS)) {
                     villagerEntity.swingHand(Hand.MAIN_HAND);
                     serverWorld.breakBlock(currentTarget, true, villagerEntity);
@@ -155,6 +153,7 @@ public class CutDownTreeTask extends Task<VillagerEntity> {
         return null;
     }
 
+    @Override
     protected boolean shouldKeepRunning(ServerWorld serverWorld, VillagerEntity villagerEntity, long l) {
         return this.currentTreeBase != null || !this.logBlocksToBreak.isEmpty();
     }

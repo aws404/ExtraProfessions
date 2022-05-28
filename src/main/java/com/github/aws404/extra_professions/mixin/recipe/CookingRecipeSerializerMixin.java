@@ -1,4 +1,4 @@
-package com.github.aws404.extra_professions.mixin;
+package com.github.aws404.extra_professions.mixin.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

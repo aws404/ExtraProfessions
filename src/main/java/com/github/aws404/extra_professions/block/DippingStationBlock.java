@@ -40,5 +40,4 @@ public class DippingStationBlock extends Block {
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
         return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new DippingStationScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
     }
-
 }

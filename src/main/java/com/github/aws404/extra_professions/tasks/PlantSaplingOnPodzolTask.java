@@ -3,6 +3,8 @@ package com.github.aws404.extra_professions.tasks;
 import com.google.common.collect.ImmutableMap;
 import org.jetbrains.annotations.Nullable;
 
+import com.github.aws404.extra_professions.util.WorldUtil;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.brain.BlockPosLookTarget;
@@ -19,7 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 
 public class PlantSaplingOnPodzolTask extends Task<VillagerEntity> {
-
     @Nullable
     private BlockPos plantPos;
 
@@ -34,21 +35,14 @@ public class PlantSaplingOnPodzolTask extends Task<VillagerEntity> {
         } if (CutDownTreeTask.villagerDoesNotHaveSapling(entity)) {
             return false;
         }
-        BlockPos.Mutable mutable = entity.getBlockPos().mutableCopy();
 
-        for(int x = -4; x <= 4; ++x) {
-            for(int y = -2; y <= 0; ++y) {
-                for(int z = -4; z <= 4; ++z) {
-                    mutable.set(entity.getX() + (double)x, entity.getY() + (double)y, entity.getZ() + (double)z);
-                    if (world.getBlockState(mutable).getBlock() == Blocks.PODZOL && world.getBlockState(mutable.up()).isAir()) {
-                        this.plantPos = mutable.up().toImmutable();
-                        return true;
-                    }
-                }
-            }
-        }
+        this.plantPos = WorldUtil.getRelativePositionsRandomly(entity.getBlockPos(), 4, 2, 4)
+                .filter(pos -> world.getBlockState(pos).isOf(Blocks.PODZOL) && world.getBlockState(pos.up()).isAir())
+                .findFirst()
+                .map(BlockPos::up)
+                .orElse(null);
 
-        return false;
+        return this.plantPos != null;
     }
 
     @Override

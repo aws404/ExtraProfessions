@@ -11,6 +11,7 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -31,7 +32,7 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
         super.render(matrices, mouseX, mouseY, delta);
-        this.textRenderer.draw(matrices, Text.translatable("container.dipping_station.max_candles", this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond() + 8, 6710886);
+        this.textRenderer.draw(matrices, Text.translatable("container.dipping_station.max_candles", this.handler.getMaxOutput()), this.x + DippingStationScreenHandler.WAX_SLOT_POS.getFirst() + 20, this.y + DippingStationScreenHandler.WAX_SLOT_POS.getSecond() + 8, 6710886);
         this.drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
@@ -39,10 +40,9 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
     protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
         super.drawMouseoverTooltip(matrices, x, y);
 
-        if (this.focusedSlot == this.handler.getHoneycombSlot() &&
-                !this.handler.getHoneycombSlot().hasStack() &&
-                this.handler.getCursorStack().isEmpty()
-        ) {
+        Slot waxSlot = this.handler.getSlot(DippingStationScreenHandler.WAX_SLOT);
+
+        if (this.focusedSlot == waxSlot && !waxSlot.hasStack() && this.handler.getCursorStack().isEmpty()) {
             this.renderTooltip(matrices, List.of(Text.translatable("container.dipping_station.wax_slot")), x, y);
         }
     }
@@ -55,15 +55,15 @@ public class DippingStationScreen extends HandledScreen<DippingStationScreenHand
 
         this.drawTexture(matrices, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
 
-        if (!this.handler.hasHoneycomb()) {
-            this.drawTexture(matrices, this.x + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getFirst(), this.y + DippingStationScreenHandler.HONEYCOMB_SLOT_POS.getSecond(), 176, 0, 16, 16);
+        if (!this.handler.getSlot(DippingStationScreenHandler.WAX_SLOT).hasStack()) {
+            this.drawTexture(matrices, this.x + DippingStationScreenHandler.WAX_SLOT_POS.getFirst(), this.y + DippingStationScreenHandler.WAX_SLOT_POS.getSecond(), 176, 0, 16, 16);
         }
 
-        if (!this.handler.hasWick()) {
-            this.drawTexture(matrices, this.x + DippingStationScreenHandler.STRING_SLOT_POS.getFirst(), this.y + DippingStationScreenHandler.STRING_SLOT_POS.getSecond(), 176, 16, 16, 16);
+        if (!this.handler.getSlot(DippingStationScreenHandler.WICK_SLOT).hasStack()) {
+            this.drawTexture(matrices, this.x + DippingStationScreenHandler.WICK_SLOT_POS.getFirst(), this.y + DippingStationScreenHandler.WICK_SLOT_POS.getSecond(), 176, 16, 16, 16);
         }
 
-        if (!this.handler.hasDye()) {
+        if (!this.handler.getSlot(DippingStationScreenHandler.DYE_SLOT).hasStack()) {
             this.drawTexture(matrices, this.x + DippingStationScreenHandler.DYE_SLOT_POS.getFirst(), this.y + DippingStationScreenHandler.DYE_SLOT_POS.getSecond(), 176, 32, 16, 16);
         }
     }

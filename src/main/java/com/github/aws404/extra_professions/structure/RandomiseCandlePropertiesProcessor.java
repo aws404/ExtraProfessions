@@ -19,8 +19,7 @@ import net.minecraft.world.WorldView;
 import java.util.Optional;
 
 public class RandomiseCandlePropertiesProcessor extends StructureProcessor {
-    private static final RandomiseCandlePropertiesProcessor INSTANCE = new RandomiseCandlePropertiesProcessor();
-    public static final Codec<RandomiseCandlePropertiesProcessor> CODEC = Codec.unit(INSTANCE);
+    public static final Codec<RandomiseCandlePropertiesProcessor> CODEC = Codec.unit(new RandomiseCandlePropertiesProcessor());
 
     @Nullable
     @Override

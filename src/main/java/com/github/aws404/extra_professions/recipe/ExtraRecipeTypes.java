@@ -20,7 +20,7 @@ public class ExtraRecipeTypes {
     }
 
     private static <T extends Recipe<?>> RecipeType<T> registerRecipeType(Identifier id) {
-        String sId = id.toString();
+        final String sId = id.toString();
         return Registry.register(Registry.RECIPE_TYPE, id, new RecipeType<>() {
             @Override
             public String toString() {

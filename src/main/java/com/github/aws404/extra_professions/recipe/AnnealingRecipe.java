@@ -22,5 +22,4 @@ public class AnnealingRecipe extends AbstractCookingRecipe {
     public ItemStack createIcon() {
         return new ItemStack(ExtraBlocks.ANNEALER_ITEM);
     }
-
 }

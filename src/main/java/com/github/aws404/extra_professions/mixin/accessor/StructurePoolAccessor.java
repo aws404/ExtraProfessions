@@ -1,4 +1,4 @@
-package com.github.aws404.extra_professions.mixin;
+package com.github.aws404.extra_professions.mixin.accessor;
 
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;

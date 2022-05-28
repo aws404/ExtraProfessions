@@ -33,6 +33,7 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     private static final int SCROLLBAR_AREA_HEIGHT = RECIPE_ENTRY_HEIGHT * RECIPE_LIST_ROWS;
     private static final int RECIPE_LIST_OFFSET_X = 52;
     private static final int RECIPE_LIST_OFFSET_Y = 14;
+
     private float scrollAmount;
     private boolean mouseClicked;
     private int scrollOffset;
@@ -58,60 +59,63 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int i = this.x;
-        int j = this.y;
-        this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        int k = (int)(41.0f * this.scrollAmount);
-        this.drawTexture(matrices, i + 119, j + SCROLLBAR_HEIGHT + k, 176 + (this.shouldScroll() ? 0 : SCROLLBAR_WIDTH), 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT);
-        int l = this.x + RECIPE_LIST_OFFSET_X;
-        int m = this.y + RECIPE_LIST_OFFSET_Y;
-        int n = this.scrollOffset + SCROLLBAR_WIDTH;
-        this.renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
-        this.renderRecipeIcons(l, m, n);
+
+        this.drawTexture(matrices, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+
+        int scrollStart = (int) (41.0f * this.scrollAmount);
+        this.drawTexture(matrices, this.x + 119, this.y + SCROLLBAR_HEIGHT + scrollStart, 176 + (this.shouldScroll() ? 0 : SCROLLBAR_WIDTH), 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT);
+
+        int recipeIconsX = this.x + RECIPE_LIST_OFFSET_X;
+        int recipeIconsY = this.y + RECIPE_LIST_OFFSET_Y;
+        int scrollOffset = this.scrollOffset + SCROLLBAR_WIDTH;
+        this.renderRecipeBackground(matrices, mouseX, mouseY, recipeIconsX, recipeIconsY, scrollOffset);
+        this.renderRecipeIcons(recipeIconsX, recipeIconsY, scrollOffset);
     }
 
     @Override
     protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
         super.drawMouseoverTooltip(matrices, x, y);
         if (this.canCraft) {
-            int i = this.x + RECIPE_LIST_OFFSET_X;
-            int j = this.y + RECIPE_LIST_OFFSET_Y;
-            int k = this.scrollOffset + SCROLLBAR_WIDTH;
+            int startX = this.x + RECIPE_LIST_OFFSET_X;
+            int startY = this.y + RECIPE_LIST_OFFSET_Y;
+            int scrollOffset = this.scrollOffset + SCROLLBAR_WIDTH;
+
             List<SawmillRecipe> list = this.handler.getAvailableRecipes();
-            for (int l = this.scrollOffset; l < k && l < this.handler.getAvailableRecipeCount(); ++l) {
-                int m = l - this.scrollOffset;
-                int n = i + m % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
-                int o = j + m / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT + 2;
-                if (x < n || x >= n + RECIPE_ENTRY_WIDTH || y < o || y >= o + RECIPE_ENTRY_HEIGHT) continue;
-                this.renderTooltip(matrices, list.get(l).getOutput(), x, y);
+            
+            for (int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
+                int posIndex = i - this.scrollOffset;
+                int recipeX = startX + posIndex % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
+                int recipeY = startY + posIndex / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT + 2;
+                if (x < recipeX || x >= recipeX + RECIPE_ENTRY_WIDTH || y < recipeY || y >= recipeY + RECIPE_ENTRY_HEIGHT) continue;
+                this.renderTooltip(matrices, list.get(i).getOutput(), x, y);
             }
         }
     }
 
     private void renderRecipeBackground(MatrixStack matrices, int mouseX, int mouseY, int x, int y, int scrollOffset) {
         for (int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
-            int j = i - this.scrollOffset;
-            int k = x + j % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
-            int l = j / RECIPE_LIST_COLUMNS;
-            int m = y + l * RECIPE_ENTRY_HEIGHT + 2;
+            int posIndex = i - this.scrollOffset;
+            int recipeX = x + posIndex % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
+            int recipeY = y + posIndex / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT + 2;
+
             int n = 0;
             if (i == this.handler.getSelectedRecipe()) {
                 n += RECIPE_ENTRY_HEIGHT;
-            } else if (mouseX >= k && mouseY >= m && mouseX < k + RECIPE_ENTRY_WIDTH && mouseY < m + RECIPE_ENTRY_HEIGHT) {
+            } else if (mouseX >= recipeX && mouseY >= recipeY && mouseX < recipeX + RECIPE_ENTRY_WIDTH && mouseY < recipeY + RECIPE_ENTRY_HEIGHT) {
                 n += 36;
             }
-            this.drawTexture(matrices, k, m - 1, 200, n, RECIPE_ENTRY_WIDTH, RECIPE_ENTRY_HEIGHT);
+
+            this.drawTexture(matrices, recipeX, recipeY - 1, 200, n, RECIPE_ENTRY_WIDTH, RECIPE_ENTRY_HEIGHT);
         }
     }
 
     private void renderRecipeIcons(int x, int y, int scrollOffset) {
         List<SawmillRecipe> list = this.handler.getAvailableRecipes();
         for (int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
-            int j = i - this.scrollOffset;
-            int k = x + j % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
-            int l = j / RECIPE_LIST_COLUMNS;
-            int m = y + l * RECIPE_ENTRY_HEIGHT + 2;
-            this.client.getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), k, m);
+            int posIndex = i - this.scrollOffset;
+            int recipeX = x + posIndex % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH;
+            int recipeY = y + posIndex / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT + 2;
+            this.client.getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), recipeX, recipeY);
         }
     }
 
@@ -119,21 +123,24 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         this.mouseClicked = false;
         if (this.canCraft) {
-            int i = this.x + RECIPE_LIST_OFFSET_X;
-            int j = this.y + RECIPE_LIST_OFFSET_Y;
+            int recipeListX = this.x + RECIPE_LIST_OFFSET_X;
+            int recipeListY = this.y + RECIPE_LIST_OFFSET_Y;
             int k = this.scrollOffset + SCROLLBAR_WIDTH;
-            for (int l = this.scrollOffset; l < k; ++l) {
-                int m = l - this.scrollOffset;
-                double d = mouseX - (double)(i + m % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH);
-                double e = mouseY - (double)(j + m / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT);
-                if (!(d >= 0.0) || !(e >= 0.0) || !(d < RECIPE_ENTRY_WIDTH) || !(e < RECIPE_ENTRY_HEIGHT) || !this.handler.onButtonClick(this.client.player, l)) continue;
+            for (int i = this.scrollOffset; i < k; ++i) {
+                int posIndex = i - this.scrollOffset;
+                double distanceX = mouseX - (double)(recipeListX + posIndex % RECIPE_LIST_COLUMNS * RECIPE_ENTRY_WIDTH);
+                double distanceY = mouseY - (double)(recipeListY + posIndex / RECIPE_LIST_COLUMNS * RECIPE_ENTRY_HEIGHT);
+
+                if (!(distanceX >= 0.0) || !(distanceY >= 0.0) || !(distanceX < RECIPE_ENTRY_WIDTH) || !(distanceY < RECIPE_ENTRY_HEIGHT) || !this.handler.onButtonClick(this.client.player, i)) continue;
+
                 MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0f));
-                this.client.interactionManager.clickButton(this.handler.syncId, l);
+                this.client.interactionManager.clickButton(this.handler.syncId, i);
                 return true;
             }
-            i = this.x + 119;
-            j = this.y + 9;
-            if (mouseX >= (double)i && mouseX < (double)(i + SCROLLBAR_WIDTH) && mouseY >= (double)j && mouseY < (double)(j + SCROLLBAR_AREA_HEIGHT)) {
+
+            int scrollBarX = this.x + 119;
+            int scrollBarY = this.y + 9;
+            if (mouseX >= (double)scrollBarX && mouseX < (double)(scrollBarX + SCROLLBAR_WIDTH) && mouseY >= (double)scrollBarY && mouseY < (double)(scrollBarY + SCROLLBAR_AREA_HEIGHT)) {
                 this.mouseClicked = true;
             }
         }
@@ -143,11 +150,11 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         if (this.mouseClicked && this.shouldScroll()) {
-            int i = this.y + RECIPE_LIST_OFFSET_Y;
-            int j = i + SCROLLBAR_AREA_HEIGHT;
-            this.scrollAmount = ((float)mouseY - (float)i - 7.5f) / ((float)(j - i) - 15.0f);
+            int startPos = this.y + RECIPE_LIST_OFFSET_Y;
+            int endPos = startPos + SCROLLBAR_AREA_HEIGHT;
+            this.scrollAmount = (float) (mouseY - startPos - 7.5f) / ((endPos - startPos) - 15.0f);
             this.scrollAmount = MathHelper.clamp(this.scrollAmount, 0.0f, 1.0f);
-            this.scrollOffset = (int)((double)(this.scrollAmount * (float)this.getMaxScroll()) + 0.5) * RECIPE_LIST_COLUMNS;
+            this.scrollOffset = (int) ((this.scrollAmount * this.getMaxScroll()) + 0.5) * RECIPE_LIST_COLUMNS;
             return true;
         }
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
@@ -156,10 +163,10 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
         if (this.shouldScroll()) {
-            int i = this.getMaxScroll();
-            this.scrollAmount = (float)((double)this.scrollAmount - amount / (double)i);
+            int maxScroll = this.getMaxScroll();
+            this.scrollAmount = (float) (this.scrollAmount - amount / maxScroll);
             this.scrollAmount = MathHelper.clamp(this.scrollAmount, 0.0f, 1.0f);
-            this.scrollOffset = (int)((double)(this.scrollAmount * (float)i) + 0.5) * RECIPE_LIST_COLUMNS;
+            this.scrollOffset = (int) ((this.scrollAmount * maxScroll) + 0.5) * RECIPE_LIST_COLUMNS;
         }
         return true;
     }

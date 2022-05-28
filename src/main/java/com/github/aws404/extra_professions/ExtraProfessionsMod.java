@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.github.aws404.extra_professions.block.ExtraBlocks;
 import com.github.aws404.extra_professions.block.ExtraPointOfInterestTypes;
-import com.github.aws404.extra_professions.mixin.VillagerEntityAccessor;
+import com.github.aws404.extra_professions.mixin.accessor.VillagerEntityAccessor;
 import com.github.aws404.extra_professions.recipe.ExtraRecipeTypes;
 import com.github.aws404.extra_professions.screen.AnnealerScreen;
 import com.github.aws404.extra_professions.screen.DippingStationScreen;

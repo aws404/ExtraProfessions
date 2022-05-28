@@ -26,17 +26,19 @@ import net.minecraft.world.World;
 
 public class SawmillBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    protected static final VoxelShape BASE_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-    protected static final VoxelShape NORTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 12.0D, 16.0D, 16.0D, 16.0D));
-    protected static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 4.0D));
-    protected static final VoxelShape EAST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 4.0D, 16.0D, 16.0D));
-    protected static final VoxelShape WEST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(12.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D));
+
+    private static final VoxelShape BASE_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+    private static final VoxelShape NORTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 12.0D, 16.0D, 16.0D, 16.0D));
+    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 4.0D));
+    private static final VoxelShape EAST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(0.0D, 8.0D, 0.0D, 4.0D, 16.0D, 16.0D));
+    private static final VoxelShape WEST_SHAPE = VoxelShapes.union(BASE_SHAPE, Block.createCuboidShape(12.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D));
 
     public SawmillBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             return ActionResult.SUCCESS;
@@ -50,6 +52,7 @@ public class SawmillBlock extends BlockWithEntity {
         }
     }
 
+    @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -68,10 +71,12 @@ public class SawmillBlock extends BlockWithEntity {
         return ExtraBlocks.SAWMILL_BLOCK_ENTITY.instantiate(pos, state);
     }
 
+    @Override
     public boolean hasComparatorOutput(BlockState state) {
         return true;
     }
 
+    @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }
@@ -91,6 +96,7 @@ public class SawmillBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
+    @Override
     public boolean hasSidedTransparency(BlockState state) {
         return true;
     }
@@ -100,14 +106,17 @@ public class SawmillBlock extends BlockWithEntity {
         builder.add(FACING);
     }
 
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
+    @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
+    @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }

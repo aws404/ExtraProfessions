@@ -67,11 +67,12 @@ jar {
 modrinth {
 	token = System.getenv("MODRINTH_TOKEN")
 	projectId = project.project_id
+	failSilently = true
 	versionNumber = version
 	versionName = System.getenv("VERSION_NAME") ? System.getenv("VERSION_NAME") : version
 	versionType = System.getenv("ALPHA") ? "alpha" : "release"
 	changelog = System.getenv("CAHNGELOG")
-	uploadFile = remapJar
+	uploadFile = "./build/libs/ExtraProfessions-${version}"
 	dependencies {
 		required.project "P7dR8mSH" // Mark Fabric API as a required dependency
 	}

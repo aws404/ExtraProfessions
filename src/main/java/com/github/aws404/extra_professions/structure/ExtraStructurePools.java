@@ -3,7 +3,7 @@ package com.github.aws404.extra_professions.structure;
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 
-import com.github.aws404.extra_professions.mixin.StructurePoolAccessor;
+import com.github.aws404.extra_professions.mixin.accessor.StructurePoolAccessor;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.structure.pool.SinglePoolElement;

@@ -28,6 +28,7 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
         super(ExtraBlocks.SAWMILL_BLOCK_ENTITY, pos, state);
     }
 
+    @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         if (!this.serializeLootTable(nbt)) {
@@ -35,6 +36,7 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
         }
     }
 
+    @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         if (!this.deserializeLootTable(nbt)) {
@@ -116,5 +118,4 @@ public class SawmillBlockEntity extends LootableContainerBlockEntity {
     public Object2IntMap<Item> getItemCounts() {
         return this.inventory.stream().map(stack -> Pair.of(stack.getItem(), stack.getCount())).collect(Object2IntOpenHashMap::new, (map, pair) -> map.addTo(pair.left(), pair.right()), (map, map2) -> map2.forEach(map::addTo));
     }
-
 }

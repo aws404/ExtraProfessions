@@ -1,4 +1,7 @@
 # Extra Professions Mod
+[![GitHub release](https://img.shields.io/github/release/aws404/ExtraProfessions.svg?style=popout&label=github)](https://github.com/aws404/ExtraProfessions/releases/latest)
+[![CurseForge](https://img.shields.io/static/v1?style=popout&label=modrinth&message=project&color=2DE391)](https://modrinth.com/mod/extra_professions)
+[![CurseForge](https://img.shields.io/static/v1?style=popout&label=curseforge&message=project&color=6441A4)](https://www.curseforge.com/minecraft/mc-mods/simplejsonvillagertrades)
 Add extra villager professions, including workstations and village buildings. 
 
 ## Added Professions
@@ -6,7 +9,7 @@ Add extra villager professions, including workstations and village buildings.
 The lumberjack manages the new lumber farm buildings, **chopping down trees** and **planting new ones** in their place or on spare **podzol** blocks.  
 Their workstation is the **sawmill** block, which also adds a new way of **crafting wood products**, sometimes at a reduced material cost.
 They will also trade a variety of wooden products with you, depending on their surroundings.
-![Image of the Lumberjack](./img/Lumberjack.png)
+![Image of the Lumberjack](/img/Lumberjack.png)
 
 ### Glazier
 The glazier is the master of **glass-work**. 

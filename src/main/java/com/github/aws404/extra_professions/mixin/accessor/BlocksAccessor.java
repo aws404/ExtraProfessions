@@ -1,4 +1,4 @@
-package com.github.aws404.extra_professions.mixin;
+package com.github.aws404.extra_professions.mixin.accessor;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;

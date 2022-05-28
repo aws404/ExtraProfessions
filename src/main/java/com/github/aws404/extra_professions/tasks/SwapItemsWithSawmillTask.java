@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
-import com.github.aws404.extra_professions.mixin.SimpleInventoryAccessor;
+import com.github.aws404.extra_professions.mixin.accessor.SimpleInventoryAccessor;
 
 import net.minecraft.entity.ai.brain.BlockPosLookTarget;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
@@ -24,7 +24,6 @@ import net.minecraft.util.math.GlobalPos;
 import java.util.Optional;
 
 public class SwapItemsWithSawmillTask extends Task<VillagerEntity> {
-
     private static final int RUN_TIME = 1200;
     private static final int KEEP_ITEM_COUNT = 32;
 

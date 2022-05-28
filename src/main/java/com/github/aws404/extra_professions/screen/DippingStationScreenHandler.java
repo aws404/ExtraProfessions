@@ -7,6 +7,7 @@ import com.github.aws404.extra_professions.block.ExtraBlocks;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.DyeItem;
@@ -23,22 +24,23 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class DippingStationScreenHandler extends ScreenHandler {
-    public static final Pair<Integer, Integer> HONEYCOMB_SLOT_POS = Pair.of(44, 38);
-    public static final Pair<Integer, Integer> STRING_SLOT_POS = Pair.of(31, 16);
+    public static final Pair<Integer, Integer> WAX_SLOT_POS = Pair.of(44, 38);
+    public static final Pair<Integer, Integer> WICK_SLOT_POS = Pair.of(31, 16);
     public static final Pair<Integer, Integer> DYE_SLOT_POS = Pair.of(57, 16);
+    public static final int WAX_SLOT = 0;
+    public static final int WICK_SLOT = 1;
+    public static final int DYE_SLOT = 2;
+    public static final int OUTPUT_SLOT = 3;
 
     private static final Map<Item, Integer> WAX_ITEMS = Map.of(Items.HONEYCOMB, 2, Items.HONEYCOMB_BLOCK, 8, Items.HONEY_BOTTLE, 6, Items.HONEY_BLOCK, 24);
 
     private final ScreenHandlerContext context;
     private long lastTakeTime;
-    private final Slot honeycombSlot;
-    private final Slot stringSlot;
-    private final Slot dyeSlot;
-    private final Slot outputSlot;
-    private final SimpleInventory input = new DippingStationInputInventory(3);
-    private final SimpleInventory output = new SimpleInventory(1);
+    private final SimpleInventory input = new SimpleInventory(3);
+    private final CraftingResultInventory output = new CraftingResultInventory();
 
     public DippingStationScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, ScreenHandlerContext.EMPTY);
@@ -47,38 +49,30 @@ public class DippingStationScreenHandler extends ScreenHandler {
     public DippingStationScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(ExtraScreenHandlers.DIPPING_STATION, syncId);
         this.context = context;
-        this.honeycombSlot = this.addSlot(new Slot(this.input, 0, HONEYCOMB_SLOT_POS.getFirst(), HONEYCOMB_SLOT_POS.getSecond()) {
+
+        this.addSlot(new InputSlot(WAX_SLOT, WAX_SLOT_POS, stack -> stack.isIn(ExtraTags.WAX_ITEMS)));
+        this.addSlot(new InputSlot(WICK_SLOT, WICK_SLOT_POS, stack -> stack.isIn(ExtraTags.WICK_ITEMS)));
+        this.addSlot(new InputSlot(DYE_SLOT, DYE_SLOT_POS, stack -> stack.getItem() instanceof DyeItem));
+        this.addSlot(new Slot(this.output, 0, 116, 26) {
             @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.isIn(ExtraTags.WAX_ITEMS);
-            }
-        });
-        this.stringSlot = this.addSlot(new Slot(this.input, 1, STRING_SLOT_POS.getFirst(), STRING_SLOT_POS.getSecond()) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.isIn(ExtraTags.WICK_ITEMS);
-            }
-        });
-        this.dyeSlot = this.addSlot(new Slot(this.input, 2, DYE_SLOT_POS.getFirst(), DYE_SLOT_POS.getSecond()) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.getItem() instanceof DyeItem;
-            }
-        });
-        this.outputSlot = this.addSlot(new Slot(this.output, 0, 116, 26) {
             public boolean canInsert(ItemStack stack) {
                 return false;
             }
 
+            @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 stack.onCraft(player.world, player, stack.getCount());
                 int outputCount = getOutputCount();
 
-                Item combRecipeRemainder = honeycombSlot.getStack().getItem().getRecipeRemainder();
-                Item stringRecipeRemainder = stringSlot.getStack().getItem().getRecipeRemainder();
+                Slot waxSlot = getSlot(WAX_SLOT);
+                Slot wickSlot = getSlot(WICK_SLOT);
+                Slot dyeSlot = getSlot(DYE_SLOT);
 
-                ItemStack remainingCombs = honeycombSlot.takeStack(1);
-                ItemStack remainingString = stringSlot.takeStack(outputCount);
+                Item combRecipeRemainder = waxSlot.getStack().getItem().getRecipeRemainder();
+                Item stringRecipeRemainder = wickSlot.getStack().getItem().getRecipeRemainder();
+
+                ItemStack remainingCombs = waxSlot.takeStack(1);
+                ItemStack remainingString = wickSlot.takeStack(outputCount);
                 dyeSlot.takeStack(1);
 
                 if (combRecipeRemainder != null) {
@@ -121,24 +115,26 @@ public class DippingStationScreenHandler extends ScreenHandler {
     }
 
     public int getMaxOutput() {
-        return !this.honeycombSlot.getStack().isEmpty() ? WAX_ITEMS.getOrDefault(this.honeycombSlot.getStack().getItem(), 2) : 0;
+        return !this.getSlot(WAX_SLOT).getStack().isEmpty() ? WAX_ITEMS.getOrDefault(this.getSlot(WAX_SLOT).getStack().getItem(), 2) : 0;
     }
 
     private int getOutputCount() {
-        return Math.min(this.stringSlot.getStack().getCount(), this.getMaxOutput());
+        return Math.min(this.getSlot(WICK_SLOT).getStack().getCount(), this.getMaxOutput());
     }
 
     private void populateResult() {
-        if (this.stringSlot.getStack().getCount() >= 1 && this.honeycombSlot.hasStack()) {
-            DyeColor color = (this.dyeSlot.hasStack() && this.dyeSlot.getStack().getItem() instanceof DyeItem dyeItem) ? dyeItem.getColor() : null;
+        Slot outputSlot = this.getSlot(OUTPUT_SLOT);
+
+        if (this.getSlot(WICK_SLOT).getStack().getCount() >= 1 && this.getSlot(WAX_SLOT).hasStack()) {
+            DyeColor color = (this.getSlot(DYE_SLOT).hasStack() && this.getSlot(DYE_SLOT).getStack().getItem() instanceof DyeItem dyeItem) ? dyeItem.getColor() : null;
 
             if (color == null) {
-                this.outputSlot.setStack(new ItemStack(Items.CANDLE, this.getOutputCount()));
+                outputSlot.setStack(new ItemStack(Items.CANDLE, this.getOutputCount()));
             } else {
-                this.outputSlot.setStack(new ItemStack(Registry.ITEM.get(new Identifier(color.asString() + "_candle")), this.getOutputCount()));
+                outputSlot.setStack(new ItemStack(Registry.ITEM.get(new Identifier(color.asString() + "_candle")), this.getOutputCount()));
             }
-        } else if (this.outputSlot.hasStack()) {
-            this.outputSlot.setStack(ItemStack.EMPTY);
+        } else if (outputSlot.hasStack()) {
+            outputSlot.setStack(ItemStack.EMPTY);
         }
 
         this.sendContentUpdates();
@@ -146,7 +142,8 @@ public class DippingStationScreenHandler extends ScreenHandler {
 
     @Override
     public void onContentChanged(Inventory inventory) {
-        this.populateResult();
+        super.onContentChanged(inventory);
+        DippingStationScreenHandler.this.populateResult();
     }
 
     @Override
@@ -190,32 +187,23 @@ public class DippingStationScreenHandler extends ScreenHandler {
         this.context.run((world, pos) -> this.dropInventory(player, this.input));
     }
 
-    public boolean hasHoneycomb() {
-        return this.honeycombSlot.hasStack();
-    }
+    private class InputSlot extends Slot {
+        private final Predicate<ItemStack> insertPredicate;
 
-    public boolean hasDye() {
-        return this.dyeSlot.hasStack();
-    }
+        public InputSlot(int index, Pair<Integer, Integer> pos, Predicate<ItemStack> insertPredicate) {
+            super(DippingStationScreenHandler.this.input, index, pos.getFirst(), pos.getSecond());
+            this.insertPredicate = insertPredicate;
+        }
 
-    public boolean hasWick() {
-        return this.stringSlot.hasStack();
-    }
-
-    public Slot getHoneycombSlot() {
-        return this.honeycombSlot;
-    }
-
-    private class DippingStationInputInventory extends SimpleInventory {
-
-        public DippingStationInputInventory(int size) {
-            super(size);
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            return super.canInsert(stack) && this.insertPredicate.test(stack);
         }
 
         @Override
         public void markDirty() {
             super.markDirty();
-            populateResult();
+            DippingStationScreenHandler.this.onContentChanged(DippingStationScreenHandler.this.input);
         }
     }
 }

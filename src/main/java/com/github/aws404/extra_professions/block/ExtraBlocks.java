@@ -3,7 +3,7 @@ package com.github.aws404.extra_professions.block;
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
 import com.github.aws404.extra_professions.block_entity.AnnealerBlockEntity;
 import com.github.aws404.extra_professions.block_entity.SawmillBlockEntity;
-import com.github.aws404.extra_professions.mixin.BlocksAccessor;
+import com.github.aws404.extra_professions.mixin.accessor.BlocksAccessor;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -18,6 +18,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.registry.Registry;
 
+@SuppressWarnings("unused")
 public class ExtraBlocks {
     public static final Block SAWMILL_BLOCK = Registry.register(Registry.BLOCK, ExtraProfessionsMod.id("sawmill"), new SawmillBlock(FabricBlockSettings.of(Material.WOOD).strength(2.5F).sounds(BlockSoundGroup.WOOD)));
     public static final Block DIPPING_STATION_BLOCK = Registry.register(Registry.BLOCK, ExtraProfessionsMod.id("dipping_station"), new DippingStationBlock(FabricBlockSettings.of(Material.WOOD).strength(2.5F).sounds(BlockSoundGroup.WOOD)));

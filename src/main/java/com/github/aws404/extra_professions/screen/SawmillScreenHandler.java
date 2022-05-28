@@ -25,18 +25,21 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class SawmillScreenHandler extends ScreenHandler {
+    public static final int INPUT_SLOT = 0;
+    public static final int OUTPUT_SLOT = 1;
 
     private final ScreenHandlerContext context;
-    private final Property selectedRecipe;
+    private final Property selectedRecipe = Property.create();
     private final World world;
-    private List<SawmillRecipe> availableRecipes;
-    private ItemStack inputStack;
-    long lastTakeTime;
-    final Slot inputSlot;
-    final Slot outputSlot;
-    Runnable contentsChangedListener;
+    private long lastTakeTime;
+    private final Slot inputSlot;
+    private final Slot outputSlot;
     public final Inventory input;
-    final CraftingResultInventory output;
+    private final CraftingResultInventory output = new CraftingResultInventory();
+
+    private Runnable contentsChangedListener = () -> { };
+    private List<SawmillRecipe> availableRecipes = Lists.newArrayList();
+    private ItemStack inputStack = ItemStack.EMPTY;
 
     public SawmillScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, new SimpleInventory(3), ScreenHandlerContext.EMPTY);
@@ -45,11 +48,6 @@ public class SawmillScreenHandler extends ScreenHandler {
     public SawmillScreenHandler(int syncId, PlayerInventory playerInventory, Inventory entity, ScreenHandlerContext context) {
         super(ExtraScreenHandlers.SAWMILL, syncId);
         this.context = context;
-        this.selectedRecipe = Property.create();
-        this.inputStack = ItemStack.EMPTY;
-        this.availableRecipes = Lists.newArrayList();
-        this.contentsChangedListener = () -> {
-        };
         this.input = new SimpleInventory(1) {
             public void markDirty() {
                 super.markDirty();
@@ -57,10 +55,10 @@ public class SawmillScreenHandler extends ScreenHandler {
                 SawmillScreenHandler.this.contentsChangedListener.run();
             }
         };
-        this.output = new CraftingResultInventory();
+
         this.world = playerInventory.player.world;
-        this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 33));
-        this.outputSlot = this.addSlot(new Slot(this.output, 1, 143, 33) {
+        this.inputSlot = this.addSlot(new Slot(this.input, INPUT_SLOT, 20, 33));
+        this.outputSlot = this.addSlot(new Slot(this.output, OUTPUT_SLOT, 143, 33) {
             public boolean canInsert(ItemStack stack) {
                 return false;
             }
@@ -94,27 +92,25 @@ public class SawmillScreenHandler extends ScreenHandler {
             });
         }
 
-        int i;
-        for(i = 0; i < 3; ++i) {
+        for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
                 this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 97 + i * 18));
             }
         }
 
-        for(i = 0; i < 9; ++i) {
+        for(int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 155));
         }
 
         this.addProperty(this.selectedRecipe);
     }
 
-
     @Override
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, ExtraBlocks.SAWMILL_BLOCK);
     }
 
-    void populateResult() {
+    private void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
             SawmillRecipe recipe = this.availableRecipes.get(this.selectedRecipe.get());
             this.output.setLastRecipe(recipe);
@@ -214,7 +210,6 @@ public class SawmillScreenHandler extends ScreenHandler {
     public boolean canCraft() {
         return this.inputSlot.hasStack() && !this.availableRecipes.isEmpty();
     }
-
 
     private boolean isInBounds(int id) {
         return id >= 0 && id < this.availableRecipes.size();

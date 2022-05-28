@@ -1,4 +1,4 @@
-package com.github.aws404.extra_professions.mixin;
+package com.github.aws404.extra_professions.mixin.client;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
