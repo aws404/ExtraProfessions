@@ -7,15 +7,16 @@ import com.github.aws404.extra_professions.block.ExtraBlocks;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -38,9 +39,9 @@ public class DippingStationScreenHandler extends ScreenHandler {
     private static final Map<Item, Integer> WAX_ITEMS = Map.of(Items.HONEYCOMB, 2, Items.HONEYCOMB_BLOCK, 8, Items.HONEY_BOTTLE, 6, Items.HONEY_BLOCK, 24);
 
     private final ScreenHandlerContext context;
-    private long lastTakeTime;
-    private final SimpleInventory input = new SimpleInventory(3);
+    private final CraftingInventory input = new CraftingInventory(this, 3, 1);
     private final CraftingResultInventory output = new CraftingResultInventory();
+    private long lastTakeTime = 0L;
 
     public DippingStationScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, ScreenHandlerContext.EMPTY);
@@ -50,51 +51,51 @@ public class DippingStationScreenHandler extends ScreenHandler {
         super(ExtraScreenHandlers.DIPPING_STATION, syncId);
         this.context = context;
 
-        this.addSlot(new InputSlot(WAX_SLOT, WAX_SLOT_POS, stack -> stack.isIn(ExtraTags.WAX_ITEMS)));
-        this.addSlot(new InputSlot(WICK_SLOT, WICK_SLOT_POS, stack -> stack.isIn(ExtraTags.WICK_ITEMS)));
-        this.addSlot(new InputSlot(DYE_SLOT, DYE_SLOT_POS, stack -> stack.getItem() instanceof DyeItem));
-        this.addSlot(new Slot(this.output, 0, 116, 26) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return false;
-            }
-
+        this.addSlot(new InputSlot(0, WAX_SLOT_POS, stack -> stack.isIn(ExtraTags.WAX_ITEMS)));
+        this.addSlot(new InputSlot(1, WICK_SLOT_POS, stack -> stack.isIn(ExtraTags.WICK_ITEMS)));
+        this.addSlot(new InputSlot(2, DYE_SLOT_POS, stack -> stack.getItem() instanceof DyeItem));
+        this.addSlot(new CraftingResultSlot(playerInventory.player, this.input, this.output, 0, 116, 26) {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                stack.onCraft(player.world, player, stack.getCount());
                 int outputCount = getOutputCount();
+                this.onCrafted(stack, outputCount);
 
                 Slot waxSlot = getSlot(WAX_SLOT);
                 Slot wickSlot = getSlot(WICK_SLOT);
-                Slot dyeSlot = getSlot(DYE_SLOT);
 
-                Item combRecipeRemainder = waxSlot.getStack().getItem().getRecipeRemainder();
-                Item stringRecipeRemainder = wickSlot.getStack().getItem().getRecipeRemainder();
+                Item waxRecRem = waxSlot.getStack().getItem().getRecipeRemainder();
+                Item wickRecRem = wickSlot.getStack().getItem().getRecipeRemainder();
 
-                ItemStack remainingCombs = waxSlot.takeStack(1);
-                ItemStack remainingString = wickSlot.takeStack(outputCount);
-                dyeSlot.takeStack(1);
+                waxSlot.takeStack(1);
+                wickSlot.takeStack(outputCount);
+                getSlot(DYE_SLOT).takeStack(1);
 
-                if (combRecipeRemainder != null) {
-                    player.giveItemStack(new ItemStack(combRecipeRemainder));
+                if (waxRecRem != null) {
+                    if (waxSlot.hasStack()) {
+                        player.giveItemStack(new ItemStack(waxRecRem));
+                    } else {
+                        waxSlot.setStack(new ItemStack(waxRecRem));
+                    }
                 }
-                if (stringRecipeRemainder != null) {
-                    player.giveItemStack(new ItemStack(stringRecipeRemainder, outputCount));
+
+                if (wickRecRem != null) {
+                    if (wickSlot.hasStack()) {
+                        player.giveItemStack(new ItemStack(wickRecRem, outputCount));
+                    } else {
+                        wickSlot.setStack(new ItemStack(wickRecRem, outputCount));
+                    }
                 }
 
-                if (!remainingCombs.isEmpty() && !remainingString.isEmpty()) {
-                    DippingStationScreenHandler.this.populateResult();
-                }
+                populateResult();
 
                 context.run((world, pos) -> {
                     long curTime = world.getTime();
+
                     if (lastTakeTime != curTime) {
                         world.playSound(null, pos, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         lastTakeTime = curTime;
                     }
-
                 });
-                super.onTakeItem(player, stack);
             }
         });
 
@@ -125,8 +126,8 @@ public class DippingStationScreenHandler extends ScreenHandler {
     private void populateResult() {
         Slot outputSlot = this.getSlot(OUTPUT_SLOT);
 
-        if (this.getSlot(WICK_SLOT).getStack().getCount() >= 1 && this.getSlot(WAX_SLOT).hasStack()) {
-            DyeColor color = (this.getSlot(DYE_SLOT).hasStack() && this.getSlot(DYE_SLOT).getStack().getItem() instanceof DyeItem dyeItem) ? dyeItem.getColor() : null;
+        if (this.getSlot(WICK_SLOT).hasStack() && this.getSlot(WAX_SLOT).hasStack()) {
+            DyeColor color = this.getSlot(DYE_SLOT).getStack().getItem() instanceof DyeItem dyeItem ? dyeItem.getColor() : null;
 
             if (color == null) {
                 outputSlot.setStack(new ItemStack(Items.CANDLE, this.getOutputCount()));

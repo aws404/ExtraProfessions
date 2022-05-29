@@ -4,15 +4,16 @@
   "package": "com.github.aws404.extra_professions.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "VillagerEntityMixin",
+    "VillagerTaskListProviderMixin",
     "accessor.BlocksAccessor",
+    "accessor.GiveGiftsToHeroTaskAccessor",
     "accessor.SimpleInventoryAccessor",
     "accessor.SinglePoolElementAccessor",
     "accessor.StructurePoolAccessor",
     "accessor.VillagerEntityAccessor",
     "recipe.AbstractFurnaceBlockEntityMixin",
-    "recipe.CookingRecipeSerializerMixin",
-    "VillagerEntityMixin",
-    "VillagerTaskListProviderMixin"
+    "recipe.CookingRecipeSerializerMixin"
   ],
   "client": [
     "client.VillagerHeldItemFeatureRendererMixin"

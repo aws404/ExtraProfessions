@@ -13,18 +13,18 @@ import java.util.Set;
 @Mixin(VillagerEntity.class)
 public interface VillagerEntityAccessor {
     @Mutable
-    @Accessor
+    @Accessor("ITEM_FOOD_VALUES")
     static void setITEM_FOOD_VALUES(Map<Item, Integer> ITEM_FOOD_VALUES) {
         throw new UnsupportedOperationException();
     }
 
     @Mutable
-    @Accessor
+    @Accessor("GATHERABLE_ITEMS")
     static void setGATHERABLE_ITEMS(Set<Item> GATHERABLE_ITEMS) {
         throw new UnsupportedOperationException();
     }
 
-    @Accessor
+    @Accessor("GATHERABLE_ITEMS")
     static Set<Item> getGATHERABLE_ITEMS() {
         throw new UnsupportedOperationException();
     }

@@ -99,6 +99,9 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 		VillagerEntityAccessor.setITEM_FOOD_VALUES(ImmutableMap.<Item, Integer>builder().putAll(VillagerEntity.ITEM_FOOD_VALUES).put(Items.APPLE, 1).build());
 		VillagerEntityAccessor.setGATHERABLE_ITEMS(ImmutableSet.<Item>builder().addAll(VillagerEntityAccessor.getGATHERABLE_ITEMS()).add(Items.APPLE).build());
 
+		// Register hero of the village gifts
+		ExtraLootTables.registerHeroOfTheVillageGifts();
+
 		// Add new buildings to villages
 		ServerLifecycleEvents.SERVER_STARTING.register(ExtraStructurePools::addAllStructures);
 

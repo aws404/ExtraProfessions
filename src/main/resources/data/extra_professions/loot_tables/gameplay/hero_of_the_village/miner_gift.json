@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

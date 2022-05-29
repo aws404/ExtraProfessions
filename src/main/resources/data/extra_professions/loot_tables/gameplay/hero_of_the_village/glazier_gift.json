@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "c:glass_blocks",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "c:glass_panes",
+          "expand": true
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
