@@ -9,10 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.aws404.extra_professions.ExtraProfessionsMod;
-import com.github.aws404.extra_professions.tasks.BreakNearbyLeavesTask;
-import com.github.aws404.extra_professions.tasks.CutDownTreeTask;
-import com.github.aws404.extra_professions.tasks.PlantSaplingOnPodzolTask;
-import com.github.aws404.extra_professions.tasks.SwapItemsWithSawmillTask;
+import com.github.aws404.extra_professions.tasks.*;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,11 +20,7 @@ import net.minecraft.village.VillagerProfession;
 
 @Mixin(VillagerTaskListProvider.class)
 public abstract class VillagerTaskListProviderMixin {
-
-    @Shadow
-    private static Pair<Integer, Task<LivingEntity>> createBusyFollowTask() {
-        throw new IllegalStateException();
-    }
+    @Shadow private static Pair<Integer, Task<LivingEntity>> createBusyFollowTask() { return null; }
 
     @Inject(method = "createWorkTasks", at= @At("HEAD"), cancellable = true)
     private static void extra_professions_injectWorkTasks(VillagerProfession profession, float speed, CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends Task<? super VillagerEntity>>>> cir) {
@@ -46,6 +39,29 @@ public abstract class VillagerTaskListProviderMixin {
                                                     Pair.of(new GoToSecondaryPositionTask(MemoryModuleType.SECONDARY_JOB_SITE, speed, 1, 6, MemoryModuleType.JOB_SITE), 5),
                                                     Pair.of(new CutDownTreeTask(), 2),
                                                     Pair.of(new PlantSaplingOnPodzolTask(), 2)
+                                            )
+                                    )
+                            ),
+                            Pair.of(10, new HoldTradeOffersTask(400, 1600)),
+                            Pair.of(10, new FindInteractionTargetTask(EntityType.PLAYER, 4)),
+                            Pair.of(2, new VillagerWalkTowardsTask(MemoryModuleType.JOB_SITE, speed, 9, 100, 1200)),
+                            Pair.of(3, new GiveGiftsToHeroTask(100)),
+                            Pair.of(99, new ScheduleActivityTask())
+                    )
+            );
+        }
+        if (profession == ExtraProfessionsMod.BREEDER_PROFESSION) {
+            cir.setReturnValue(
+                    ImmutableList.of(
+                            createBusyFollowTask(),
+                            Pair.of(5,
+                                    new RandomTask<>(
+                                            ImmutableList.of(
+                                                    Pair.of(new VillagerWorkTask(), 7),
+                                                    Pair.of(new GoToIfNearbyTask(MemoryModuleType.JOB_SITE, 0.4F, 10), 2),
+                                                    Pair.of(new GoToNearbyPositionTask(MemoryModuleType.JOB_SITE, 0.4F, 1, 10), 5),
+                                                    Pair.of(new GoToSecondaryPositionTask(MemoryModuleType.SECONDARY_JOB_SITE, speed, 1, 6, MemoryModuleType.JOB_SITE), 5),
+                                                    Pair.of(new BreedAnimalsTask(), 3)
                                             )
                                     )
                             ),

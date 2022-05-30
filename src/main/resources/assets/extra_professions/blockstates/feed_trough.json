@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "extra_professions:block/feed_trough"
+    },
+    "axis=x": {
+      "model": "extra_professions:block/feed_trough",
+      "y": 90
+    }
+  }
+}

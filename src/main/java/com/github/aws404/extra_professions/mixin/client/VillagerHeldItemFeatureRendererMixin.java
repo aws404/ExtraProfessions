@@ -21,7 +21,6 @@ import net.minecraft.util.math.Vec3f;
 
 @Mixin(VillagerHeldItemFeatureRenderer.class)
 public class VillagerHeldItemFeatureRendererMixin<T extends LivingEntity> {
-
     @Shadow @Final private HeldItemRenderer heldItemRenderer;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", shift = At.Shift.BEFORE, by = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)

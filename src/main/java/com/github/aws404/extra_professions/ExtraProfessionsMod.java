@@ -21,7 +21,11 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.impl.FabricLoaderImpl;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -30,14 +34,18 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.structure.StructureManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
+import net.minecraft.world.GameRules;
 
 @SuppressWarnings("unused")
 public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer {
 	public static final String MOD_ID = "extra_professions";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Extra Professions");
+
+	public static final GameRules.Key<GameRules.IntRule> MAX_VILLAGER_ANIMAL_BREEDING_GAME_RULE = GameRuleRegistry.register("maxVillagerAnimalBreeding", GameRules.Category.MOBS, GameRuleFactory.createIntRule(5));
 
 	public static final VillagerProfession LUMBERJACK_PROFESSION = Registry.register(Registry.VILLAGER_PROFESSION, id("lumberjack"), VillagerProfessionBuilder.create()
 			.id(id("lumberjack"))
@@ -72,6 +80,13 @@ public class ExtraProfessionsMod implements ModInitializer, ClientModInitializer
 			.workstation(ExtraPointOfInterestTypes.MINER)
 			.secondaryJobSites(Blocks.COAL_ORE, Blocks.IRON_ORE, Blocks.COPPER_ORE, Blocks.EMERALD_ORE)
 			.workSound(SoundEvents.BLOCK_STONE_BREAK)
+			.build()
+	);
+
+	public static final VillagerProfession BREEDER_PROFESSION = Registry.register(Registry.VILLAGER_PROFESSION, id("breeder"), VillagerProfessionBuilder.create()
+			.id(id("breeder"))
+			.workstation(ExtraPointOfInterestTypes.BREEDER)
+			.workSound(SoundEvents.BLOCK_GRASS_HIT)
 			.build()
 	);
 

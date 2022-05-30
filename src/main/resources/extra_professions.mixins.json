@@ -12,6 +12,8 @@
     "accessor.SinglePoolElementAccessor",
     "accessor.StructurePoolAccessor",
     "accessor.VillagerEntityAccessor",
+    "pathfinding.LandPathNodeMakerMixin",
+    "pathfinding.OpenDoorsTaskMixin",
     "recipe.AbstractFurnaceBlockEntityMixin",
     "recipe.CookingRecipeSerializerMixin"
   ],
