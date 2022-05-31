@@ -1,6 +1,7 @@
 package com.github.aws404.extra_professions.recipe;
 
 import com.github.aws404.extra_professions.block.ExtraBlocks;
+import com.github.aws404.extra_professions.screen.SawmillScreenHandler;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -16,7 +17,7 @@ public class SawmillRecipe extends CuttingRecipe {
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return this.input.test(inventory.getStack(0));
+        return this.input.test(inventory.getStack(SawmillScreenHandler.INPUT_SLOT));
     }
 
     @Override

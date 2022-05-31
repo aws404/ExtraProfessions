@@ -20,7 +20,7 @@ import net.minecraft.village.VillagerProfession;
 
 @Mixin(VillagerTaskListProvider.class)
 public abstract class VillagerTaskListProviderMixin {
-    @Shadow private static Pair<Integer, Task<LivingEntity>> createBusyFollowTask() { return null; }
+    @Shadow private static Pair<Integer, Task<LivingEntity>> createBusyFollowTask() { throw new IllegalStateException(); }
 
     @Inject(method = "createWorkTasks", at= @At("HEAD"), cancellable = true)
     private static void extra_professions_injectWorkTasks(VillagerProfession profession, float speed, CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends Task<? super VillagerEntity>>>> cir) {

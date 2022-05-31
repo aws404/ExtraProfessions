@@ -19,7 +19,6 @@ import net.minecraft.util.JsonHelper;
 
 @Mixin(CookingRecipeSerializer.class)
 public class CookingRecipeSerializerMixin {
-
     @Inject(method = "read(Lnet/minecraft/util/Identifier;Lcom/google/gson/JsonObject;)Lnet/minecraft/recipe/AbstractCookingRecipe;", at = @At(value = "RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void extra_professions_allowCountsInRecipeJson(Identifier identifier, JsonObject jsonObject, CallbackInfoReturnable<AbstractCookingRecipe> cir, String string, JsonElement jsonElement, Ingredient ingredient, String string2, Identifier identifier2, ItemStack output, float f, int i) {
         output.setCount(JsonHelper.getInt(jsonObject, "count", 1));

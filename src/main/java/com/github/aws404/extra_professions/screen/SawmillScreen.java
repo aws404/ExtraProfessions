@@ -164,7 +164,7 @@ public class SawmillScreen extends HandledScreen<SawmillScreenHandler> {
     public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
         if (this.shouldScroll()) {
             int maxScroll = this.getMaxScroll();
-            this.scrollAmount = (float) (this.scrollAmount - amount / maxScroll);
+            this.scrollAmount = (float) (this.scrollAmount - (amount / maxScroll));
             this.scrollAmount = MathHelper.clamp(this.scrollAmount, 0.0f, 1.0f);
             this.scrollOffset = (int) ((this.scrollAmount * maxScroll) + 0.5) * RECIPE_LIST_COLUMNS;
         }
